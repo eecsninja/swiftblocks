@@ -1,15 +1,11 @@
 
-/**
- *
- *    Logfile.cpp
- *
- *    This file contains a set of functions for writing and reading
- *    to/from a log file. Specify which file to use with the function
- *    setLogFile.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Logfile.cpp
+//
+// This file contains a set of functions for writing and reading
+// to/from a log file. Specify which file to use with the function
+// setLogFile.
+//
+// Author:    Johan Öfverstedt
 
 //Basic Input/Output header:
 #include <iostream>
@@ -22,13 +18,9 @@
 
 char *LogFile::currentLogFile = "./log.txt";
 
-/**
- *
- *    Function LogFile::clearLog()
- *
- *    Clears the specified log file.
- *
- */
+// Function LogFile::clearLog()
+//
+// Clears the specified log file.
 
 void LogFile::clearLog()
 {
@@ -50,13 +42,9 @@ void LogFile::clearLog()
 
 }
 
-/**
- *
- *    Function LogFile::getLogFile()
- *
- *    Retrieves the current log file.
- *
- */
+// Function LogFile::getLogFile()
+//
+// Retrieves the current log file.
 
 char *LogFile::getLogFile()
 {
@@ -65,13 +53,9 @@ char *LogFile::getLogFile()
 
 }
 
-/**
- *
- *    Function LogFile::setLogFile()
- *
- *    Sets the current log file.
- *
- */
+// Function LogFile::setLogFile()
+//
+// Sets the current log file.
 
 void LogFile::setLogFile(char *file)
 {
@@ -80,14 +64,10 @@ void LogFile::setLogFile(char *file)
 
 }
 
-/**
- *
- *    Function LogFile::writeLog()
- *
- *    Appends a formatted string to the current
- *    log file.
- *
- */
+// Function LogFile::writeLog()
+//
+// Appends a formatted string to the current
+// log file.
 
 void LogFile::writeLog(char *msg, ...)
 {

@@ -1,14 +1,10 @@
 
-/**
- *
- *    Util.h
- *
- *    This file contains definitions of the resource loading
- *    functions that takes a path and a filename.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Util.h
+//
+// This file contains definitions of the resource loading
+// functions that takes a path and a filename.
+//
+// Author:    Johan Öfverstedt
 
 #ifndef _LOADUTIL_HEADER_
 #define _LOADUTIL_HEADER_

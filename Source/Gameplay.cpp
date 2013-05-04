@@ -1,14 +1,10 @@
 
-/**
- *
- *    Gameplay.cpp
- *
- *    This file contains the implementation of the TetrisEngine class
- *    that handles the gameplay.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Gameplay.cpp
+//
+// This file contains the implementation of the TetrisEngine class
+// that handles the gameplay.
+//
+// Author:    Johan Öfverstedt
 
 //Basic Input/Output header:
 #include <iostream>
@@ -21,14 +17,10 @@
 #include "Blocks.h"
 #include "Gameplay.h"
 
-/**
- *
- *    Constructor TetrisEngine::TetrisEngine()
- *
- *    Initilizes the TetrisEngine object and
- *    resets all values, prepares it for use.
- *
- */
+// Constructor TetrisEngine::TetrisEngine()
+//
+// Initilizes the TetrisEngine object and
+// resets all values, prepares it for use.
 
 TetrisEngine::TetrisEngine(long xpos, long ypos)
 {
@@ -88,14 +80,10 @@ TetrisEngine::TetrisEngine(long xpos, long ypos)
 
 }
 
-/**
- *
- *    Destructor TetrisEngine::~TetrisEngine()
- *
- *    Resets all values and deallocates all allocated
- *    memory.
- *
- */
+// Destructor TetrisEngine::~TetrisEngine()
+//
+// Resets all values and deallocates all allocated
+// memory.
 
 TetrisEngine::~TetrisEngine()
 {
@@ -127,15 +115,11 @@ TetrisEngine::~TetrisEngine()
 
 }
 
-/**
- *
- *    Function TetrisEngine::bindToGrid()
- *
- *    Adds the current gameBlock to the grid,
- *    of static blocks. It does also prepares
- *    the next block.
- *
- */
+// Function TetrisEngine::bindToGrid()
+//
+// Adds the current gameBlock to the grid,
+// of static blocks. It does also prepares
+// the next block.
 
 void TetrisEngine::bindToGrid(Block *b)
 {
@@ -176,15 +160,11 @@ void TetrisEngine::bindToGrid(Block *b)
 
 }
 
-/**
- *
- *    Function TetrisEngine::blockCollision()
- *
- *    Checks if the specified block collides with any block
- *    in the grid, if moved the full spaces spcified with the
- *    deltaX and deltaY parameters.
- *
- */
+// Function TetrisEngine::blockCollision()
+//
+// Checks if the specified block collides with any block
+// in the grid, if moved the full spaces spcified with the
+// deltaX and deltaY parameters.
 
 CollisionState TetrisEngine::blockCollision(Block *b, long deltaX, long deltaY)
 {
@@ -248,17 +228,13 @@ CollisionState TetrisEngine::blockCollision(Block *b, long deltaX, long deltaY)
 
 }
 
-/**
- *
- *    Function TetrisEngine::changeBGR()
- *
- *    Changes the current background into another
- *    from a file specified with the parameter
- *    newBGR.
- *
- *    TODO: Add fading of the background changes!
- *
- */
+// Function TetrisEngine::changeBGR()
+//
+// Changes the current background into another
+// from a file specified with the parameter
+// newBGR.
+//
+// TODO: Add fading of the background changes!
 
 void TetrisEngine::changeBGR(const char *newBGR)
 {
@@ -297,14 +273,10 @@ void TetrisEngine::changeBGR(const char *newBGR)
 
 }
 
-/**
- *
- *    Function TetrisEngine::destroyGame()
- *
- *    Frees all memory allocated by the class,
- *    and sets all game flags to default.
- *
- */
+// Function TetrisEngine::destroyGame()
+//
+// Frees all memory allocated by the class,
+// and sets all game flags to default.
 
 void TetrisEngine::destroyGame()
 {
@@ -381,14 +353,10 @@ void TetrisEngine::destroyGame()
 
 }
 
-/**
- *
- *    Function TetrisEngine::drawGame()
- *
- *    Takes care of all the drawing of the playfield
- *    that this instance of the class handles.
- *
- */
+// Function TetrisEngine::drawGame()
+//
+// Takes care of all the drawing of the playfield
+// that this instance of the class handles.
 
 bool TetrisEngine::drawGame()
 {
@@ -628,15 +596,11 @@ bool TetrisEngine::drawGame()
 
 }
 
-/**
- *
- *    Function TetrisEngine::eliminateRows()
- *
- *    Tags any full row for removal so that the
- *    function updateGame() can fade these
- *    and ultimatly, remove them.
- *
- */
+// Function TetrisEngine::eliminateRows()
+//
+// Tags any full row for removal so that the
+// function updateGame() can fade these
+// and ultimatly, remove them.
 
 void TetrisEngine::eliminateRows()
 {
@@ -691,15 +655,11 @@ void TetrisEngine::eliminateRows()
 
 }
 
-/**
- *
- *    Function TetrisEngine::getKeyConfig()
- *
- *    Retrieves the current key, that's set
- *    for one of the actions that are defined
- *    in the enumeration InputConfig.
- *
- */
+// Function TetrisEngine::getKeyConfig()
+//
+// Retrieves the current key, that's set
+// for one of the actions that are defined
+// in the enumeration InputConfig.
 
 long TetrisEngine::getKeyConfig(InputConfig ic)
 {
@@ -720,14 +680,10 @@ long TetrisEngine::getKeyConfig(InputConfig ic)
 
 }
 
-/**
- *
- *    Function TetrisEngine::loadGame()
- *
- *    Loads all the resources needed and clears
- *    all important flags and values.
- *
- */
+// Function TetrisEngine::loadGame()
+//
+// Loads all the resources needed and clears
+// all important flags and values.
 
 bool TetrisEngine::loadGame()
 {
@@ -873,14 +829,10 @@ bool TetrisEngine::loadGame()
 
 }
 
-/**
- *
- *    Function TetrisEngine::resetGame()
- *
- *    Clears all flags and values and makes the game
- *    ready to restart.
- *
- */
+// Function TetrisEngine::resetGame()
+//
+// Clears all flags and values and makes the game
+// ready to restart.
 
 void TetrisEngine::resetGame()
 {
@@ -939,17 +891,13 @@ void TetrisEngine::resetGame()
 
 }
 
-/**
- *
- *    Function TetrisEngine::setLevel()
- *
- *    Sets the current level of the game.
- *    Used by the outside gameloop to manage
- *    which background to display, and internaly
- *    to determine which speed to move the
- *    m_gameBlock with.
- *
- */
+// Function TetrisEngine::setLevel()
+//
+// Sets the current level of the game.
+// Used by the outside gameloop to manage
+// which background to display, and internaly
+// to determine which speed to move the
+// m_gameBlock with.
 
 void TetrisEngine::setLevel(long newLevel)
 {
@@ -963,15 +911,11 @@ void TetrisEngine::setLevel(long newLevel)
 
 }
 
-/**
- *
- *    Function TetrisEngine::setKeyConfig()
- *
- *    Sets the key, that's to perform
- *    one of the actions that are defined
- *    in the enumeration InputConfig.
- *
- */
+// Function TetrisEngine::setKeyConfig()
+//
+// Sets the key, that's to perform
+// one of the actions that are defined
+// in the enumeration InputConfig.
 
 void TetrisEngine::setKeyConfig(InputConfig ic, long newKey)
 {
@@ -990,18 +934,14 @@ void TetrisEngine::setKeyConfig(InputConfig ic, long newKey)
 
 }
 
-/**
- *
- *    Function TetrisEngine::updateGame()
- *
- *    Handles all every-frame chores such as
- *    updating block position, collision detection,
- *    fading values and more.
- *    Currently uses the global key array declared
- *    in TetrisClone.h, might want to replace it
- *    with something that is more OO.
- *
- */
+// Function TetrisEngine::updateGame()
+//
+// Handles all every-frame chores such as
+// updating block position, collision detection,
+// fading values and more.
+// Currently uses the global key array declared
+// in TetrisClone.h, might want to replace it
+// with something that is more OO.
 
 void TetrisEngine::updateGame()
 {

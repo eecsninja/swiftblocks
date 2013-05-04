@@ -1,15 +1,11 @@
 
-/**
- *
- *    Main.cpp
- *
- *    This file contains the entry point of the game
- *    and it's here that the TetrisEngine objects, and
- *    all global variables are declared.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Main.cpp
+//
+// This file contains the entry point of the game
+// and it's here that the TetrisEngine objects, and
+// all global variables are declared.
+//
+// Author:    Johan Öfverstedt
 
 //Basic Input/Output header:
 #include <iostream>
@@ -28,187 +24,119 @@ void freeSurfaces();
 void gameLoop();
 void outputConfiguration();
 
-/**
- *
- *    Global variable g_keys
- *
- *    Array of keystates, that contains
- *    the current keyboard status.
- *
- */
+// Global variable g_keys
+//
+// Array of keystates, that contains
+// the current keyboard status.
 
 bool g_keys[512];
 
-/**
- *
- *    Global variable g_screen
- *
- *    Pointer to the screen surface
- *    provided by SDL.
- *
- */
+// Global variable g_screen
+//
+// Pointer to the screen surface
+// provided by SDL.
 
 SDL_Surface *g_screen = 0;
 
-/**
- *
- *    Global variable g_gameBGR
- *
- *    Pointer to the game background surface.
- *
- */
+// Global variable g_gameBGR
+//
+// Pointer to the game background surface.
 
 SDL_Surface *g_gameBGR = 0;
 
-/**
- *
- *    Global variable g_gameIcon
- *
- *    Pointer to the game icon surface.
- *
- */
+// Global variable g_gameIcon
+//
+// Pointer to the game icon surface.
 
 SDL_Surface *g_gameIcon = 0;
 
-/**
- *
- *    Global variable g_advBar
- *
- *    Pointer to the advantage bar surface.
- *
- */
+// Global variable g_advBar
+//
+// Pointer to the advantage bar surface.
 
 SDL_Surface *g_advBar = 0;
 
-/**
- *
- *    Global variable g_screenWidth
- *
- *    The game window's width in pixels.
- *
- */
+// Global variable g_screenWidth
+//
+// The game window's width in pixels.
 
 long g_screenWidth;
 
-/**
- *
- *    Global variable g_screenHeight
- *
- *    The game window's height in pixels.
- *
- */
+// Global variable g_screenHeight
+//
+// The game window's height in pixels.
 
 long g_screenHeight;
 
-/**
- *
- *    Global variable g_inGame
- *
- *    Flag set to true, if the game is
- *    not in the menu.
- *
- */
+// Global variable g_inGame
+//
+// Flag set to true, if the game is
+// not in the menu.
 
 bool g_inGame = false;
 
-/**
- *
- *    Global variable g_quitGame
- *
- *    Flag set to true by any function when
- *    the game wishes to be exited.
- *
- */
+// Global variable g_quitGame
+//
+// Flag set to true by any function when
+// the game wishes to be exited.
 
 bool g_quitGame = false;
 
-/**
- *
- *    Global variable g_players
- *
- *    The number of players currently
- *    playing.
- *
- */
+// Global variable g_players
+//
+// The number of players currently
+// playing.
 
 long g_players = 1;
 
-/**
- *
- *    Variable drawError
- *
- *    Flag that makes sure, drawing errors
- *    are reported only once.
- *
- */
+// Variable drawError
+//
+// Flag that makes sure, drawing errors
+// are reported only once.
 
 bool drawError = false;
 
-/**
- *
- *    Variable playerEngine1
- *
- *    Pointer to a gameplay-handling object
- *    of type TetrisEngine.
- *    Handles player 1.
- *
- */
+// Variable playerEngine1
+//
+// Pointer to a gameplay-handling object
+// of type TetrisEngine.
+// Handles player 1.
 
 TetrisEngine *playerEngine1 = 0;
 
-/**
- *
- *    Variable playerEngine2
- *
- *    Pointer to a gameplay-handling object
- *    of type TetrisEngine.
- *    Handles player 2.
- *
- */
+// Variable playerEngine2
+//
+// Pointer to a gameplay-handling object
+// of type TetrisEngine.
+// Handles player 2.
 
 TetrisEngine *playerEngine2 = 0;
 
-/**
- *
- *    Variable g_soundEnabled
- *
- *    Flag that controls if any sound effects
- *    are to be played.
- *
- */
+// Variable g_soundEnabled
+//
+// Flag that controls if any sound effects
+// are to be played.
 
 bool g_soundEnabled = true;
 
-/**
- *
- *    Variable g_musicEnabled
- *
- *    Flag that controls if the background music
- *    is to be played.
- *
- */
+// Variable g_musicEnabled
+//
+// Flag that controls if the background music
+// is to be played.
 
 bool g_musicEnabled = true;
 
-/**
- *
- *    Variable g_musicChannel
- *
- *    The channel number that the music is
- *    playing on.
- *
- */
+// Variable g_musicChannel
+//
+// The channel number that the music is
+// playing on.
 
 long g_musicChannel = 0;
 
-/**
- *
- *    Variable g_backgroundMusic
- *
- *    Pointer to a sound-clip
- *    of type FSOUND_SAMPLE.
- *
- */
+// Variable g_backgroundMusic
+//
+// Pointer to a sound-clip
+// of type FSOUND_SAMPLE.
 
 FSOUND_SAMPLE *g_backgroundMusic = 0;
 
@@ -232,15 +160,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 #endif
 
-/**
- *
- *    Function main
- *
- *    Entry point of the appliction and the
- *    function that initilizes and manages the
- *    whole application.
- *
- */
+// Function main
+//
+// Entry point of the appliction and the
+// function that initilizes and manages the
+// whole application.
 
 int main(int argc, char **argv)
 {
@@ -955,14 +879,10 @@ int main(int argc, char **argv)
 
 }
 
-/**
- *
- *    Function configure
- *
- *    Loads the configuration file and
- *    changes the game according to it.
- *
- */
+// Function configure
+//
+// Loads the configuration file and
+// changes the game according to it.
 
 void configure()
 {
@@ -1002,14 +922,10 @@ void configure()
 
 }
 
-/**
- *
- *    Function cleanUp
- *
- *    Callback function that is called when the
- *    application is terminated for any reason.
- *
- */
+// Function cleanUp
+//
+// Callback function that is called when the
+// application is terminated for any reason.
 
 void cleanUp()
 {
@@ -1046,14 +962,10 @@ void cleanUp()
 
 }
 
-/**
- *
- *    Function gameLoop
- *
- *    Handles event handling during gameplay,
- *    updates the game status, and flips the screen.
- *
- */
+// Function gameLoop
+//
+// Handles event handling during gameplay,
+// updates the game status, and flips the screen.
 
 void gameLoop()
 {
@@ -1173,15 +1085,11 @@ void gameLoop()
 
 }
 
-/**
- *
- *    Function freeSurfaces
- *
- *    Frees all the SDL surfaces loaded
- *    during the duration of the game from
- *    this file.
- *
- */
+// Function freeSurfaces
+//
+// Frees all the SDL surfaces loaded
+// during the duration of the game from
+// this file.
 
 void freeSurfaces()
 {

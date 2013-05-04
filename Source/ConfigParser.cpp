@@ -1,14 +1,10 @@
 
-/**
- *
- *    ConfigParser.cpp
- *
- *    This file contains the implementation of the ConfigParser
- *    class which is used to read the configuration file.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// ConfigParser.cpp
+//
+// This file contains the implementation of the ConfigParser
+// class which is used to read the configuration file.
+//
+// Author:    Johan Öfverstedt
 
 #include "ConfigParser.h"
 #include <fstream>

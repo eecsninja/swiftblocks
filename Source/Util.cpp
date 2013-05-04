@@ -1,14 +1,10 @@
 
-/**
- *
- *    Util.cpp
- *
- *    This file contains the resource loading
- *    functions that takes a path and a filename.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Util.cpp
+//
+// This file contains the resource loading
+// functions that takes a path and a filename.
+//
+// Author:    Johan Öfverstedt
 
 //Basic Input/Output:
 #include "stdio.h"
@@ -17,15 +13,11 @@
 //Game headers:
 #include "Main.h"
 
-/**
- *
- *    Function loadImg
- *
- *    Takes a path and a file name,
- *    and loads an image file using
- *    the SDL_image library.
- *
- */
+// Function loadImg
+//
+// Takes a path and a file name,
+// and loads an image file using
+// the SDL_image library.
 
 SDL_Surface *loadImg(const char *path, const char *file)
 {
@@ -40,15 +32,11 @@ SDL_Surface *loadImg(const char *path, const char *file)
 
 }
 
-/**
- *
- *    Function loadFont
- *
- *    Takes a path and a file name,
- *    and loads a font file using
- *    the BFont library.
- *
- */
+// Function loadFont
+//
+// Takes a path and a file name,
+// and loads a font file using
+// the BFont library.
 
 BFont_Info *loadFont(const char *path, const char *file)
 {
@@ -63,15 +51,11 @@ BFont_Info *loadFont(const char *path, const char *file)
 
 }
 
-/**
- *
- *    Function loadSound
- *
- *    Takes a path and a file name,
- *    and loads a sound file using
- *    the FMod library.
- *
- */
+// Function loadSound
+//
+// Takes a path and a file name,
+// and loads a sound file using
+// the FMod library.
 
 FSOUND_SAMPLE *loadSound(const char *path, const char *file)
 {

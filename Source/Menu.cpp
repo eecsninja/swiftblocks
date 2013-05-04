@@ -1,46 +1,30 @@
 
-/**
- *
- *    Menu.cpp
- *
- *    This file contains the implementation of the functions
- *    which are used to handle the game menu.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Menu.cpp
+//
+// This file contains the implementation of the functions
+// which are used to handle the game menu.
+//
+// Author:    Johan Öfverstedt
 
 //Game headers:
 #include "Main.h"
 #include "Menu.h"
 
-/**
- *
- *    Variable singlePlayerButton
- *
- *    Pointer to the single player button surface.
- *
- */
+// Variable singlePlayerButton
+//
+// Pointer to the single player button surface.
 
 SDL_Surface *singlePlayerButton = 0;
 
-/**
- *
- *    Variable splitScreenButton
- *
- *    Pointer to the split screen button surface.
- *
- */
+// Variable splitScreenButton
+//
+// Pointer to the split screen button surface.
 
 SDL_Surface *splitScreenButton = 0;
 
-/**
- *
- *    Variable exitButton
- *
- *    Pointer to the exit button surface.
- *
- */
+// Variable exitButton
+//
+// Pointer to the exit button surface.
 
 SDL_Surface *exitButton = 0;
 
@@ -49,38 +33,26 @@ SDL_Surface *checkedSound = 0;
 SDL_Surface *uncheckedMusic = 0;
 SDL_Surface *checkedMusic = 0;
 
-/**
- *
- *    Variable drawErrorMenu
- *
- *    Flag that makes sure, drawing errors
- *    are reported only once.
- *
- */
+// Variable drawErrorMenu
+//
+// Flag that makes sure, drawing errors
+// are reported only once.
 
 bool drawErrorMenu = false;
 
-/**
- *
- *    Variable buttonSound
- *
- *    Pointer to a sound-clip
- *    of type FSOUND_SAMPLE that plays
- *    when user presses a menu-button.
- *
- */
+// Variable buttonSound
+//
+// Pointer to a sound-clip
+// of type FSOUND_SAMPLE that plays
+// when user presses a menu-button.
 
 FSOUND_SAMPLE *buttonSound = 0;
 
-/**
- *
- *    Function loadMenu()
- *
- *    Loads the menu resources.
- *    Returns false if loading of any of the
- *    files failed to load.
- *
- */
+// Function loadMenu()
+//
+// Loads the menu resources.
+// Returns false if loading of any of the
+// files failed to load.
 
 bool loadMenu()
 {
@@ -172,15 +144,11 @@ bool loadMenu()
 
 }
 
-/**
- *
- *    Function drawMenu()
- *
- *    Draws all the menu buttons.
- *    Returns false if drawing of any
- *    of the buttons failed.
- *
- */
+// Function drawMenu()
+//
+// Draws all the menu buttons.
+// Returns false if drawing of any
+// of the buttons failed.
 
 bool drawMenu()
 {
@@ -290,13 +258,9 @@ bool drawMenu()
 
 }
 
-/**
- *
- *    Function menuLoop
- *
- *    Handles event handling and updating during menu display.
- *
- */
+// Function menuLoop
+//
+// Handles event handling and updating during menu display.
 
 void menuLoop()
 {
@@ -466,13 +430,9 @@ void menuLoop()
 
 }
 
-/**
- *
- *    Function destroyMenu()
- *
- *    Unloads the menu resources.
- *
- */
+// Function destroyMenu()
+//
+// Unloads the menu resources.
 
 void destroyMenu()
 {

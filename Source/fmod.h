@@ -1,12 +1,8 @@
-/**
- *
- *    fmod.h
- *
- *    Stub function in place of actual FMOD libraries.
- *
- *    Author:    Simon Que
- *
- */
+// fmod.h
+//
+// Stub function in place of actual FMOD libraries.
+//
+// Author:    Simon Que
 
 
 #ifndef _FMOD_H_

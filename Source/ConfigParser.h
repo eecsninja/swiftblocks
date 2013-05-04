@@ -1,14 +1,10 @@
 
-/**
- *
- *    ConfigParser.h
- *
- *    This file contains the definition of the ConfigParser
- *    class which is used to read the configuration file.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// ConfigParser.h
+//
+// This file contains the definition of the ConfigParser
+// class which is used to read the configuration file.
+//
+// Author:    Johan Öfverstedt
 
 #ifndef CONFIG_PARSER_H
 #define CONFIG_PARSER_H

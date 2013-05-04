@@ -1,14 +1,10 @@
 
-/**
- *
- *    Blocks.cpp
- *
- *    This file contains the implementation of the Block class which
- *    is used to handle the moving blocks in the game.
- *
- *    Author:    Johan Öfverstedt
- *
- */
+// Blocks.cpp
+//
+// This file contains the implementation of the Block class which
+// is used to handle the moving blocks in the game.
+//
+// Author:    Johan Öfverstedt
 
 //Basic Input/Output header:
 #include <iostream>
@@ -19,13 +15,9 @@
 //Game headers:
 #include "Blocks.h"
 
-/**
- *
- *    Function Block::clear()
- *
- *    Clears the current block arrays, and values.
- *
- */
+// Function Block::clear()
+//
+// Clears the current block arrays, and values.
 
 void Block::clear()
 {
@@ -50,14 +42,10 @@ void Block::clear()
 
 }
 
-/**
- *
- *    Function Block::createRandomBlock()
- *
- *    Create the block from one of the 6 block-types
- *    at random.
- *
- */
+// Function Block::createRandomBlock()
+//
+// Create the block from one of the 6 block-types
+// at random.
 
 void Block::createRandomBlock()
 {
@@ -363,15 +351,11 @@ void Block::createRandomBlock()
 
 }
 
-/**
- *
- *    Function Block::rotate()
- *
- *    Change the direction of the block
- *    clockwise if reverse is false, and counter-clockwise
- *    if reverse is true.
- *
- */
+// Function Block::rotate()
+//
+// Change the direction of the block
+// clockwise if reverse is false, and counter-clockwise
+// if reverse is true.
 
 void Block::rotate(bool reverse)
 {
@@ -407,13 +391,9 @@ void Block::rotate(bool reverse)
 
 }
 
-/**
- *
- *    Operator Block::=
- *
- *    Copy a Block object to another.
- *
- */
+// Operator Block::=
+//
+// Copy a Block object to another.
 
 Block Block::operator =(Block &Block2)
 {
