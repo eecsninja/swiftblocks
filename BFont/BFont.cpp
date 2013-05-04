@@ -18,7 +18,7 @@
 
 // ATTENTION: MS Visual C++ do not declarate vsnprintf in <stdio.h> 
 #ifdef WIN32
-	#define vsnprintf _vsnprintf
+    #define vsnprintf _vsnprintf
 #endif
 
 
@@ -54,16 +54,16 @@ void InitFont(BFont_Info *Font)
     if (SDL_MUSTLOCK(Font->Surface)) SDL_LockSurface(Font->Surface);
     x=0;
     while ( x < (Font->Surface->w-1) ) {
-	    if(GetPixel(Font->Surface,x,0) != sentry) {
+        if(GetPixel(Font->Surface,x,0) != sentry) {
             Font->Chars[i].x = x;
             Font->Chars[i].y = 1;
             Font->Chars[i].h = Font->Surface->h;
             for (; GetPixel(Font->Surface, x, 0) != sentry && x < (Font->Surface->w); ++x) ;
             Font->Chars[i].w = (x - Font->Chars[i].x);
             i++;
-	    }
+        }
         else {
-	        x++;
+            x++;
         }
     }
     Font->Chars[' '].x = 0;
@@ -85,36 +85,36 @@ BFont_Info * LoadFont (const char *filename)
 {
     SDL_Surface *surface = NULL;
     int x;
-	BFont_Info *Font=NULL;
+    BFont_Info *Font=NULL;
 
-	if (filename != NULL) {
-		Font = (BFont_Info *) malloc(sizeof(BFont_Info));
+    if (filename != NULL) {
+        Font = (BFont_Info *) malloc(sizeof(BFont_Info));
 
-	    if (Font != NULL) {
+        if (Font != NULL) {
 
-			surface = (SDL_Surface *) IMG_Load(filename);
-			if (surface != NULL) {
-				Font->Surface = surface;
-				for (x=0; x<256; x++) {
-					Font->Chars[x].x = 0;
-					Font->Chars[x].y = 0;
-					Font->Chars[x].h = 0;
-					Font->Chars[x].w = 0;
-				}
-				/* Init the font */
-				InitFont(Font);
-				/* Set the font as the current font */
-				SetCurrentFont(Font);
-			}
-			else {
-				/* free memory allocated for the BFont_Info structure */
-				free(Font);
-				Font = NULL;
-			}
-	    }
-	}
+            surface = (SDL_Surface *) IMG_Load(filename);
+            if (surface != NULL) {
+                Font->Surface = surface;
+                for (x=0; x<256; x++) {
+                    Font->Chars[x].x = 0;
+                    Font->Chars[x].y = 0;
+                    Font->Chars[x].h = 0;
+                    Font->Chars[x].w = 0;
+                }
+                /* Init the font */
+                InitFont(Font);
+                /* Set the font as the current font */
+                SetCurrentFont(Font);
+            }
+            else {
+                /* free memory allocated for the BFont_Info structure */
+                free(Font);
+                Font = NULL;
+            }
+        }
+    }
 
-	return Font;
+    return Font;
 }
 
 
@@ -122,29 +122,29 @@ BFont_Info * LoadFont (const char *filename)
 BFont_Info * LoadFontFromSurface (SDL_Surface *Surface)
 {
     int x;
-	BFont_Info *Font=NULL;
+    BFont_Info *Font=NULL;
 
-	if (Surface != NULL) {
-		Font = (BFont_Info *) malloc(sizeof(BFont_Info));
+    if (Surface != NULL) {
+        Font = (BFont_Info *) malloc(sizeof(BFont_Info));
 
-	    if (Font != NULL) {
+        if (Font != NULL) {
 
-			Font->Surface = Surface;
-			for (x=0; x<256; x++) {
-				Font->Chars[x].x = 0;
-				Font->Chars[x].y = 0;
-				Font->Chars[x].h = 0;
-				Font->Chars[x].w = 0;
-			}
+            Font->Surface = Surface;
+            for (x=0; x<256; x++) {
+                Font->Chars[x].x = 0;
+                Font->Chars[x].y = 0;
+                Font->Chars[x].h = 0;
+                Font->Chars[x].w = 0;
+            }
 
-			/* Init the font */
-			InitFont(Font);
-			/* Set the font as the current font */
-			SetCurrentFont(Font);
-		}
-	}
+            /* Init the font */
+            InitFont(Font);
+            /* Set the font as the current font */
+            SetCurrentFont(Font);
+        }
+    }
 
-	return Font;
+    return Font;
 
 }
 
@@ -152,7 +152,7 @@ BFont_Info * LoadFontFromSurface (SDL_Surface *Surface)
 void FreeFont(BFont_Info *Font)
 {
     SDL_FreeSurface(Font->Surface);
-	free(Font);
+    free(Font);
 }
 
 BFont_Info * SetFontColor(BFont_Info *Font,Uint8 r, Uint8 g, Uint8 b)
@@ -167,53 +167,53 @@ BFont_Info * SetFontColor(BFont_Info *Font,Uint8 r, Uint8 g, Uint8 b)
     Uint8 new_r, new_g, new_b;
     Uint32 color_key;
 
-	newfont = (BFont_Info *) malloc(sizeof(BFont_Info));
-	if (newfont != NULL) {
+    newfont = (BFont_Info *) malloc(sizeof(BFont_Info));
+    if (newfont != NULL) {
 
-		newfont->h = Font->h;
+        newfont->h = Font->h;
 
-		for (x=0; x<256; x++) {
-			newfont->Chars[x].x = Font->Chars[x].x;
-			newfont->Chars[x].y = Font->Chars[x].y;
-			newfont->Chars[x].h = Font->Chars[x].h;
-			newfont->Chars[x].w = Font->Chars[x].w;
-		}
+        for (x=0; x<256; x++) {
+            newfont->Chars[x].x = Font->Chars[x].x;
+            newfont->Chars[x].y = Font->Chars[x].y;
+            newfont->Chars[x].h = Font->Chars[x].h;
+            newfont->Chars[x].w = Font->Chars[x].w;
+        }
 
-		surface = SDL_ConvertSurface(Font->Surface, Font->Surface->format, Font->Surface->flags);
-		if (surface != NULL) {
+        surface = SDL_ConvertSurface(Font->Surface, Font->Surface->format, Font->Surface->flags);
+        if (surface != NULL) {
 
-			if (SDL_MUSTLOCK(surface))       SDL_LockSurface(surface);
-			if (SDL_MUSTLOCK(Font->Surface)) SDL_LockSurface(Font->Surface);
+            if (SDL_MUSTLOCK(surface))       SDL_LockSurface(surface);
+            if (SDL_MUSTLOCK(Font->Surface)) SDL_LockSurface(Font->Surface);
 
-			color_key =  GetPixel(surface, 0, surface->h-1);
+            color_key =  GetPixel(surface, 0, surface->h-1);
 
-			printf("looking...\n");
-			for( x=0; x < Font->Surface->w; x++) {
-				for( y=0; y < Font->Surface->h; y++) {
-					old_r = old_g = old_b = 0;
-					pixel = GetPixel(Font->Surface,x,y);
+            printf("looking...\n");
+            for( x=0; x < Font->Surface->w; x++) {
+                for( y=0; y < Font->Surface->h; y++) {
+                    old_r = old_g = old_b = 0;
+                    pixel = GetPixel(Font->Surface,x,y);
 
-					if (pixel != color_key) {
-						SDL_GetRGB(pixel, surface->format, &old_r,&old_g,&old_b);
+                    if (pixel != color_key) {
+                        SDL_GetRGB(pixel, surface->format, &old_r,&old_g,&old_b);
 
-						new_r = (Uint8) ((old_r * r) / 255);
-						new_g = (Uint8) ((old_g * g) / 255);
-						new_b = (Uint8) ((old_b * b) / 255);
+                        new_r = (Uint8) ((old_r * r) / 255);
+                        new_g = (Uint8) ((old_g * g) / 255);
+                        new_b = (Uint8) ((old_b * b) / 255);
 
-						pixel = SDL_MapRGB(surface->format,new_r,new_g,new_b);
-						PutPixel(surface,x,y,pixel);
-					}
-				}
-			}
-			printf("unlooking...\n");
-			if (SDL_MUSTLOCK(surface))       SDL_UnlockSurface(surface);
-			if (SDL_MUSTLOCK(Font->Surface)) SDL_UnlockSurface(Font->Surface);
+                        pixel = SDL_MapRGB(surface->format,new_r,new_g,new_b);
+                        PutPixel(surface,x,y,pixel);
+                    }
+                }
+            }
+            printf("unlooking...\n");
+            if (SDL_MUSTLOCK(surface))       SDL_UnlockSurface(surface);
+            if (SDL_MUSTLOCK(Font->Surface)) SDL_UnlockSurface(Font->Surface);
 
-			SDL_SetColorKey(surface, SDL_SRCCOLORKEY, color_key);
-		}
+            SDL_SetColorKey(surface, SDL_SRCCOLORKEY, color_key);
+        }
 
-		newfont->Surface = surface;
-	}
+        newfont->Surface = surface;
+    }
     return newfont;
 }
 

@@ -1,12 +1,12 @@
 
 /**
  *
- *	Util.h
+ *    Util.h
  *
- *	This file contains definitions of the resource loading
- *	functions that takes a path and a filename.
+ *    This file contains definitions of the resource loading
+ *    functions that takes a path and a filename.
  *
- *	Author:	Johan Öfverstedt
+ *    Author:    Johan Öfverstedt
  *
  */
 

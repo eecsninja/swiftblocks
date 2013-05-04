@@ -1,12 +1,12 @@
 
 /**
  *
- *	Util.cpp
+ *    Util.cpp
  *
- *	This file contains the resource loading
- *	functions that takes a path and a filename.
+ *    This file contains the resource loading
+ *    functions that takes a path and a filename.
  *
- *	Author:	Johan Öfverstedt
+ *    Author:    Johan Öfverstedt
  *
  */
 
@@ -19,69 +19,69 @@
 
 /**
  *
- *	Function loadImg
+ *    Function loadImg
  *
- *	Takes a path and a file name,
- *	and loads an image file using
- *	the SDL_image library.
+ *    Takes a path and a file name,
+ *    and loads an image file using
+ *    the SDL_image library.
  *
  */
 
 SDL_Surface *loadImg(const char *path, const char *file)
 {
 
-	char tmpPath[1024];
-	
-	sprintf(tmpPath, path);
-	
-	strcat(tmpPath, file);
+    char tmpPath[1024];
+    
+    sprintf(tmpPath, path);
+    
+    strcat(tmpPath, file);
 
-	return IMG_Load(tmpPath);
+    return IMG_Load(tmpPath);
 
 }
 
 /**
  *
- *	Function loadFont
+ *    Function loadFont
  *
- *	Takes a path and a file name,
- *	and loads a font file using
- *	the BFont library.
+ *    Takes a path and a file name,
+ *    and loads a font file using
+ *    the BFont library.
  *
  */
 
 BFont_Info *loadFont(const char *path, const char *file)
 {
 
-	char tmpPath[1024];
-	
-	sprintf(tmpPath, path);
-	
-	strcat(tmpPath, file);
+    char tmpPath[1024];
+    
+    sprintf(tmpPath, path);
+    
+    strcat(tmpPath, file);
 
-	return LoadFont(tmpPath);
+    return LoadFont(tmpPath);
 
 }
 
 /**
  *
- *	Function loadSound
+ *    Function loadSound
  *
- *	Takes a path and a file name,
- *	and loads a sound file using
- *	the FMod library.
+ *    Takes a path and a file name,
+ *    and loads a sound file using
+ *    the FMod library.
  *
  */
 
 FSOUND_SAMPLE *loadSound(const char *path, const char *file)
 {
 
-	char tmpPath[1024];
-	
-	sprintf(tmpPath, path);
-	
-	strcat(tmpPath, file);
+    char tmpPath[1024];
+    
+    sprintf(tmpPath, path);
+    
+    strcat(tmpPath, file);
 
-	return FSOUND_Sample_Load(FSOUND_FREE, tmpPath, 0, 0);
+    return FSOUND_Sample_Load(FSOUND_FREE, tmpPath, 0, 0);
 
 }

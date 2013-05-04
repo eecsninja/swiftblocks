@@ -1,10 +1,10 @@
 /**
  *
- *	fmod.h
+ *    fmod.h
  *
- *	Stub function in place of actual FMOD libraries.
+ *    Stub function in place of actual FMOD libraries.
  *
- *	Author:	Simon Que
+ *    Author:    Simon Que
  *
  */
 
@@ -18,7 +18,7 @@ enum {
 };
 
 static struct FSOUND_SAMPLE {
-	int foo;
+    int foo;
 } dummy_sample;
 
 namespace {

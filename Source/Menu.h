@@ -1,12 +1,12 @@
 
 /**
  *
- *	Menu.h
+ *    Menu.h
  *
- *	This file contains the definitions of the functions
- *	which are used to handle the game menu.
+ *    This file contains the definitions of the functions
+ *    which are used to handle the game menu.
  *
- *	Author:	Johan Öfverstedt
+ *    Author:    Johan Öfverstedt
  *
  */
 

@@ -25,9 +25,9 @@ extern "C" {
 
 typedef struct {
     /* font height */
-	int h;
+    int h;
     /* font surface */
-	SDL_Surface *Surface;
+    SDL_Surface *Surface;
     /* characters width */
     SDL_Rect Chars[256];
 } BFont_Info;

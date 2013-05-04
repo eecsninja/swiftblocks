@@ -1,12 +1,12 @@
 
 /**
  *
- *	Blocks.h
+ *    Blocks.h
  *
- *	This file contains the definition of the Block class which
- *	is used to handle the moving blocks in the game.
+ *    This file contains the definition of the Block class which
+ *    is used to handle the moving blocks in the game.
  *
- *	Author:	Johan Öfverstedt
+ *    Author:    Johan Öfverstedt
  *
  */
 
@@ -15,9 +15,9 @@
 
 /**
  *
- *	Definition NO_BLOCK
+ *    Definition NO_BLOCK
  *
- *	No block at this point.
+ *    No block at this point.
  *
  */
 
@@ -25,9 +25,9 @@
 
 /**
  *
- *	Definition BLOCK_COLOR_RED
+ *    Definition BLOCK_COLOR_RED
  *
- *	Red block colour.
+ *    Red block colour.
  *
  */
 
@@ -35,9 +35,9 @@
 
 /**
  *
- *	Definition BLOCK_COLOR_BLUE
+ *    Definition BLOCK_COLOR_BLUE
  *
- *	Blue block colour.
+ *    Blue block colour.
  *
  */
 
@@ -45,9 +45,9 @@
 
 /**
  *
- *	Definition BLOCK_COLOR_YELLOW
+ *    Definition BLOCK_COLOR_YELLOW
  *
- *	Yellow block colour.
+ *    Yellow block colour.
  *
  */
 
@@ -55,9 +55,9 @@
 
  /**
  *
- *	Definition BLOCK_COLOR_GREEN
+ *    Definition BLOCK_COLOR_GREEN
  *
- *	Green block colour.
+ *    Green block colour.
  *
  */
 
@@ -65,9 +65,9 @@
 
 /**
  *
- *	Definition BLOCK_COLOR_PINK
+ *    Definition BLOCK_COLOR_PINK
  *
- *	Pink block colour.
+ *    Pink block colour.
  *
  */
 
@@ -75,9 +75,9 @@
 
 /**
  *
- *	Definition BLOCK_COLOR_ORANGE
+ *    Definition BLOCK_COLOR_ORANGE
  *
- *	Orange block colour
+ *    Orange block colour
  *
  */
 
@@ -85,11 +85,11 @@
 
 /**
  *
- *	Class Block
+ *    Class Block
  *
- *	Handles all the things that has to do with the moving block.
- *	Contains functions for adjusting the block position and create
- *	a new block by random.
+ *    Handles all the things that has to do with the moving block.
+ *    Contains functions for adjusting the block position and create
+ *    a new block by random.
  *
  */
 
@@ -98,79 +98,79 @@ class Block
 
 public:
 
-	Block() { clear(); }
+    Block() { clear(); }
 
-	void clear();
+    void clear();
 
-	void createRandomBlock();
+    void createRandomBlock();
 
-	long *getShape() { return m_shape[m_direction]; }
-	
-	long getDirection() { return m_direction; }
+    long *getShape() { return m_shape[m_direction]; }
+    
+    long getDirection() { return m_direction; }
 
-	long getMaxDirections() { return m_maxDirections; }
+    long getMaxDirections() { return m_maxDirections; }
 
-	long getX() { return m_x; }
+    long getX() { return m_x; }
 
-	long getY() { return m_y; }
+    long getY() { return m_y; }
 
-	void rotate(bool reverse);
+    void rotate(bool reverse);
 
-	void setX(long x) { m_x = x; }
+    void setX(long x) { m_x = x; }
 
-	void setY(long y) { m_y = y; }
+    void setY(long y) { m_y = y; }
 
-	Block operator =(Block &Block2);
+    Block operator =(Block &Block2);
 
-	long m_shape[4][16];
+    long m_shape[4][16];
 
 private:
 
-	/**
-	 *
-	 *	Member variable m_direction
-	 *
-	 *	Keeps track of the direction of the block.
-	 *	It can be a value of 1 to 4, depending
-	 *	on how many directions the block
-	 *	has(m_maxDirections).
-	 *
-	 */
-	
-	long m_direction;
-	
-	/**
-	 *
-	 *	Member varible m_maxDirections
-	 *
-	 *	The number of angles described for the current
-	 *	block. Can be 1 to 4.
-	 *
-	 */
+    /**
+     *
+     *    Member variable m_direction
+     *
+     *    Keeps track of the direction of the block.
+     *    It can be a value of 1 to 4, depending
+     *    on how many directions the block
+     *    has(m_maxDirections).
+     *
+     */
+    
+    long m_direction;
+    
+    /**
+     *
+     *    Member varible m_maxDirections
+     *
+     *    The number of angles described for the current
+     *    block. Can be 1 to 4.
+     *
+     */
 
-	long m_maxDirections;
+    long m_maxDirections;
 
-	/**
-	 *
-	 *	Member variable m_x
-	 *
-	 *	Virtual x position in a grid where 1
-	 *	is a whole square in the grid.
-	 *
-	 */
+    /**
+     *
+     *    Member variable m_x
+     *
+     *    Virtual x position in a grid where 1
+     *    is a whole square in the grid.
+     *
+     */
 
-	long m_x;
+    long m_x;
 
-	/**
-	 *
-	 *	Member variable m_y
-	 *
-	 *	Virtual y position in a grid where 1
-	 *	is a whole square in the grid.
-	 *
-	 */
-	
-	long m_y;
+    /**
+     *
+     *    Member variable m_y
+     *
+     *    Virtual y position in a grid where 1
+     *    is a whole square in the grid.
+     *
+     */
+    
+    long m_y;
 
 };
 

@@ -1,13 +1,13 @@
 
 /**
  *
- *	Logfile.cpp
+ *    Logfile.cpp
  *
- *	This file contains a set of functions for writing and reading
- *	to/from a log file. Specify which file to use with the function
- *	setLogFile.
+ *    This file contains a set of functions for writing and reading
+ *    to/from a log file. Specify which file to use with the function
+ *    setLogFile.
  *
- *	Author:	Johan Öfverstedt
+ *    Author:    Johan Öfverstedt
  *
  */
 
@@ -24,96 +24,96 @@ char *LogFile::currentLogFile = "./log.txt";
 
 /**
  *
- *	Function LogFile::clearLog()
+ *    Function LogFile::clearLog()
  *
- *	Clears the specified log file.
+ *    Clears the specified log file.
  *
  */
 
 void LogFile::clearLog()
 {
 
-	FILE *hFile = 0;
+    FILE *hFile = 0;
 
-	if(currentLogFile == 0)
-	{
+    if(currentLogFile == 0)
+    {
 
-		return;
+        return;
 
-	}
-		
-	hFile =	fopen(currentLogFile, "w+");
-	
-	fwrite("", 0, 0, hFile);
+    }
+        
+    hFile =    fopen(currentLogFile, "w+");
+    
+    fwrite("", 0, 0, hFile);
 
-	fclose(hFile);
+    fclose(hFile);
 
 }
 
 /**
  *
- *	Function LogFile::getLogFile()
+ *    Function LogFile::getLogFile()
  *
- *	Retrieves the current log file.
+ *    Retrieves the current log file.
  *
  */
 
 char *LogFile::getLogFile()
 {
 
-	return currentLogFile;
+    return currentLogFile;
 
 }
 
 /**
  *
- *	Function LogFile::setLogFile()
+ *    Function LogFile::setLogFile()
  *
- *	Sets the current log file.
+ *    Sets the current log file.
  *
  */
 
 void LogFile::setLogFile(char *file)
 {
 
-	currentLogFile = file;
+    currentLogFile = file;
 
 }
 
 /**
  *
- *	Function LogFile::writeLog()
+ *    Function LogFile::writeLog()
  *
- *	Appends a formatted string to the current
- *	log file.
+ *    Appends a formatted string to the current
+ *    log file.
  *
  */
 
 void LogFile::writeLog(char *msg, ...)
 {
 
-	va_list list;
-	char buffer[512];
-	int bytes = 0;
-	FILE *hFile = 0;
+    va_list list;
+    char buffer[512];
+    int bytes = 0;
+    FILE *hFile = 0;
 
-	if(currentLogFile == 0)
-	{
+    if(currentLogFile == 0)
+    {
 
-		return;
+        return;
 
-	}
+    }
 
-	hFile = fopen(currentLogFile, "a+");
+    hFile = fopen(currentLogFile, "a+");
 
-	va_start(list, msg);
+    va_start(list, msg);
 
-		bytes = vsprintf(buffer, msg, list);
+        bytes = vsprintf(buffer, msg, list);
 
-	va_end(list);
+    va_end(list);
 
-	fwrite(buffer, bytes, 1, hFile);
+    fwrite(buffer, bytes, 1, hFile);
 
-	fclose(hFile);
+    fclose(hFile);
 
 }
