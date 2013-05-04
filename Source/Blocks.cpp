@@ -21,17 +21,12 @@
 
 void Block::clear()
 {
-
     for(long i = 0; i < 4; ++i)
     {
-
         for(long j = 0; j < 18; ++j)
         {
-
             m_shape[i][j] = 0;
-
         }
-
     }
 
     m_maxDirections = 0;
@@ -39,7 +34,6 @@ void Block::clear()
 
     m_x = 0;
     m_y = 0;
-
 }
 
 // Function Block::createRandomBlock()
@@ -49,16 +43,13 @@ void Block::clear()
 
 void Block::createRandomBlock()
 {
-
     static long seed = 0;
 
     if(seed == 0)
     {
-
         seed = time(0);
 
         srand(seed);
-
     }
 
     seed *= time(0) % 255;
@@ -78,7 +69,6 @@ void Block::createRandomBlock()
 
     switch(newShape)
     {
-
     /*
 
         0X00    0000
@@ -90,7 +80,6 @@ void Block::createRandomBlock()
 
     case 0:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 2)
@@ -109,7 +98,6 @@ void Block::createRandomBlock()
             m_maxDirections = 2;
 
             break;
-
         }
 
     /*
@@ -123,7 +111,6 @@ void Block::createRandomBlock()
 
     case 1:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -139,7 +126,6 @@ void Block::createRandomBlock()
             m_maxDirections = 1;
 
             break;
-
         }
 
     /*
@@ -153,7 +139,6 @@ void Block::createRandomBlock()
 
     case 2:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -174,7 +159,6 @@ void Block::createRandomBlock()
             m_maxDirections = 2;
 
             break;
-
         }
 
     /*
@@ -188,7 +172,6 @@ void Block::createRandomBlock()
 
     case 3:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -219,7 +202,6 @@ void Block::createRandomBlock()
             m_maxDirections = 4;
 
             break;
-
         }
 
     /*
@@ -233,7 +215,6 @@ void Block::createRandomBlock()
 
     case 4:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -264,7 +245,6 @@ void Block::createRandomBlock()
             m_maxDirections = 4;
 
             break;
-
         }
 
     /*
@@ -278,7 +258,6 @@ void Block::createRandomBlock()
 
     case 5:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -299,7 +278,6 @@ void Block::createRandomBlock()
             m_maxDirections = 2;
 
             break;
-
         }
 
     /*
@@ -313,7 +291,6 @@ void Block::createRandomBlock()
 
     case 6:
         {
-
             long color = (rand() % 2) + 1;
 
             if(color == 1)
@@ -344,11 +321,8 @@ void Block::createRandomBlock()
             m_maxDirections = 4;
 
             break;
-
         }
-
     }
-
 }
 
 // Function Block::rotate()
@@ -359,36 +333,22 @@ void Block::createRandomBlock()
 
 void Block::rotate(bool reverse)
 {
-
     if(!reverse)
     {
-
         if((m_direction + 1) >= m_maxDirections)
         {
-
             m_direction = 0;
-
         } else {
-
             ++m_direction;
-
         }
-
     } else {
-
         if((m_direction - 1) < 0)
         {
-
             m_direction = m_maxDirections - 1;
-
         } else {
-
             --m_direction;
-
         }
-
     }
-
 }
 
 // Operator Block::=
@@ -397,7 +357,6 @@ void Block::rotate(bool reverse)
 
 Block Block::operator =(Block &Block2)
 {
-
     m_shape[0][0] = Block2.m_shape[0][0];
     m_shape[0][1] = Block2.m_shape[0][1];
     m_shape[0][2] = Block2.m_shape[0][2];
@@ -475,5 +434,4 @@ Block Block::operator =(Block &Block2)
     m_y = Block2.getY();
 
     return *this;
-
 }

@@ -18,7 +18,6 @@
 
 namespace LogFile
 {
-
     extern char *currentLogFile;
 
     void clearLog(); //Clears the specified log file.
@@ -28,7 +27,6 @@ namespace LogFile
     void setLogFile(char *file); //Sets the current log file.
 
     void writeLog(char *msg, ...); //Appends the formatted string to the current log file.
-
 };
 
 #endif

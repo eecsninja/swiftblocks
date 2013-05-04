@@ -24,14 +24,11 @@ char *LogFile::currentLogFile = "./log.txt";
 
 void LogFile::clearLog()
 {
-
     FILE *hFile = 0;
 
     if(currentLogFile == 0)
     {
-
         return;
-
     }
 
     hFile =    fopen(currentLogFile, "w+");
@@ -39,7 +36,6 @@ void LogFile::clearLog()
     fwrite("", 0, 0, hFile);
 
     fclose(hFile);
-
 }
 
 // Function LogFile::getLogFile()
@@ -48,9 +44,7 @@ void LogFile::clearLog()
 
 char *LogFile::getLogFile()
 {
-
     return currentLogFile;
-
 }
 
 // Function LogFile::setLogFile()
@@ -59,9 +53,7 @@ char *LogFile::getLogFile()
 
 void LogFile::setLogFile(char *file)
 {
-
     currentLogFile = file;
-
 }
 
 // Function LogFile::writeLog()
@@ -71,7 +63,6 @@ void LogFile::setLogFile(char *file)
 
 void LogFile::writeLog(char *msg, ...)
 {
-
     va_list list;
     char buffer[512];
     int bytes = 0;
@@ -79,9 +70,7 @@ void LogFile::writeLog(char *msg, ...)
 
     if(currentLogFile == 0)
     {
-
         return;
-
     }
 
     hFile = fopen(currentLogFile, "a+");
@@ -95,5 +84,4 @@ void LogFile::writeLog(char *msg, ...)
     fwrite(buffer, bytes, 1, hFile);
 
     fclose(hFile);
-
 }

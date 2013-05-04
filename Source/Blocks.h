@@ -59,7 +59,6 @@
 
 class Block
 {
-
 public:
 
     Block() { clear(); }
@@ -119,7 +118,6 @@ private:
     // is a whole square in the grid.
 
     long m_y;
-
 };
 
 #endif

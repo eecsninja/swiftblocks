@@ -151,11 +151,9 @@ FSOUND_SAMPLE *g_backgroundMusic = 0;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-
     main(0, 0);
 
     return 0;
-
 }
 
 #endif
@@ -168,7 +166,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 int main(int argc, char **argv)
 {
-
     setLogFile("../Output.txt");
 
     clearLog();
@@ -190,13 +187,11 @@ int main(int argc, char **argv)
 
     if(!g_gameIcon)
     {
-
         writeLog("Loading of the game icon failed.\n");
 
         g_quitGame = true;
 
         return 0;
-
     }
 
     SDL_WM_SetIcon(g_gameIcon, 0);
@@ -206,26 +201,20 @@ int main(int argc, char **argv)
 
     if(SDL_VideoModeOK(g_screenWidth, g_screenHeight, 32, SDL_DOUBLEBUF | SDL_HWSURFACE | SDL_ANYFORMAT) == 0)
     {
-
         writeLog("Hardware rendering not supported, software rendering used.\n");
 
         g_screen = SDL_SetVideoMode(g_screenWidth, g_screenHeight, 32, SDL_DOUBLEBUF | SDL_SWSURFACE | SDL_ANYFORMAT);
-
     } else {
-
         g_screen = SDL_SetVideoMode(g_screenWidth, g_screenHeight, 32, SDL_DOUBLEBUF | SDL_HWSURFACE | SDL_ANYFORMAT);
-
     }
 
     if(!g_screen)
     {
-
         writeLog("SDL initiated unsuccessfully. \n");
 
         freeSurfaces();
 
         return 0;
-
     }
 
     SDL_WM_SetCaption("Swift blocks", 0);
@@ -235,13 +224,11 @@ int main(int argc, char **argv)
 
     if(!g_gameBGR)
     {
-
         writeLog("Loading of the game background failed.\n");
 
         g_quitGame = true;
 
         return 0;
-
     }
 
     if(!g_advBar)
@@ -249,20 +236,17 @@ int main(int argc, char **argv)
 
     if(!g_advBar)
     {
-
         writeLog("Loading of the advantage bar failed.\n");
 
         g_quitGame = true;
 
         return 0;
-
     }
 
     g_backgroundMusic = loadSound(SND_PATH, "Music.ogg");
 
     if(!g_backgroundMusic)
     {
-
         writeLog("Loading of the background music failed.\n");
 
         destroyMenu();
@@ -272,19 +256,15 @@ int main(int argc, char **argv)
         g_quitGame = true;
 
         return 0;
-
     }
 
     if(g_musicEnabled)
     {
-
         FSOUND_SetLoopMode(g_musicChannel = FSOUND_PlaySound(FSOUND_FREE, g_backgroundMusic), FSOUND_LOOP_NORMAL);
-
     }
 
     if(!loadMenu())
     {
-
         writeLog("Loading of the menu failed.\n");
 
         destroyMenu();
@@ -294,7 +274,6 @@ int main(int argc, char **argv)
         g_quitGame = true;
 
         return 0;
-
     }
 
     playerEngine1 = new TetrisEngine(420, 120);
@@ -316,7 +295,6 @@ int main(int argc, char **argv)
 
     if(!playerEngine1->loadGame())
     {
-
         writeLog("Loading of the game failed.\n");
 
         destroyMenu();
@@ -328,12 +306,10 @@ int main(int argc, char **argv)
         g_quitGame = true;
 
         return 0;
-
     }
 
     if(!playerEngine2->loadGame())
     {
-
         writeLog("Loading of the game failed.\n");
 
         destroyMenu();
@@ -347,17 +323,13 @@ int main(int argc, char **argv)
         g_quitGame = true;
 
         return 0;
-
     }
 
     while(!g_quitGame)
     {
-
         while(!g_inGame && !g_quitGame)
         {
-
             menuLoop();
-
         }
 
         playerEngine1->resetGame();
@@ -368,43 +340,33 @@ int main(int argc, char **argv)
 
         if(SDL_BlitSurface(g_gameBGR, 0, g_screen, 0) < 0)
         {
-
             if(!drawError)
             {
-
                 writeLog("Failed to draw game background.\n");
-
             }
 
             drawError = true;
-
         }
 
         if(g_players == 1)
         {
-
             playerEngine1->setX(250);
             playerEngine1->setY(120);
             playerEngine2->setX(50);
             playerEngine2->setY(120);
-
         }
         else if(g_players == 2)
         {
-
             playerEngine1->setX(420);
             playerEngine1->setY(120);
             playerEngine2->setX(50);
             playerEngine2->setY(120);
-
         }
 
         while(g_inGame && !g_quitGame)
         {
-
             if(g_players == 2)
             {
-
                 SDL_Rect rect;
                 long stepSize = 0;
 
@@ -413,44 +375,34 @@ int main(int argc, char **argv)
 
                 if(SDL_BlitSurface(g_advBar, 0, g_screen, &rect) < 0)
                 {
-
                     if(!drawError)
                     {
-
                         writeLog("Failed to draw advantage bar.\n");
-
                     }
 
                     drawError = true;
-
                 }
 
                 if(playerEngine1->getLevel() != 0 || playerEngine2->getLevel() != 0)
                 {
-
                     stepSize = (g_advBar->w - 10) / 14;
 
                     if(playerEngine2->getLevel() != 0)
                     {
-
                         rect.x = 170 + 6 + (g_advBar->w - 12) * 0.5;
                         rect.y = 500 + 6;
 
                         rect.w = stepSize * playerEngine2->getLevel();
-
                     } else {
-
                         rect.x = 170 + 6 + ((g_advBar->w - 12) * 0.5) - (stepSize * playerEngine1->getLevel());
                         rect.y = 500 + 6;
 
                         rect.w = stepSize * playerEngine1->getLevel();
-
                     }
 
                     rect.h = g_advBar->h - 12;
 
                     SDL_FillRect(g_screen, &rect, 0x000090);
-
                 }
 
                 rect.x = 170 + 6 + ((g_advBar->w - 12) * 0.5);
@@ -459,57 +411,42 @@ int main(int argc, char **argv)
                 rect.w = 1;
 
                 SDL_FillRect(g_screen, &rect, 0xFFFFFF);
-
             }
 
             if(g_players == 1)
             {
-
                 if(playerEngine1->getLinesErased() > 10)
                 {
-
                     playerEngine1->setLevel(1);
 
                     if(playerEngine1->getLinesErased() > 20)
                     {
-
                         playerEngine1->setLevel(2);
-
                     }
 
                     if(playerEngine1->getLinesErased() > 40)
                     {
-
                         playerEngine1->setLevel(3);
-
                     }
 
                     if(playerEngine1->getLinesErased() > 60)
                     {
-
                         playerEngine1->setLevel(4);
-
                     }
 
                     if(playerEngine1->getLinesErased() > 80)
                     {
-
                         playerEngine1->setLevel(5);
-
                     }
 
                     if(playerEngine1->getLinesErased() > 110)
                     {
-
                         playerEngine1->setLevel(6);
-
                     }
 
                     if(playerEngine1->getLinesErased() > 140)
                     {
-
                         playerEngine1->setLevel(7);
-
                     }
 
                     char path[255];
@@ -517,337 +454,261 @@ int main(int argc, char **argv)
                     sprintf(path, "%sgamefield%d.jpg", GFX_PATH, playerEngine1->getLevel() + 1);
 
                     playerEngine1->changeBGR(path);
-
                 }
-
             } else if(g_players == 2) {
-
                 long erased = 0;
 
                 erased = playerEngine1->getLinesErased();
 
                 if(erased > 10 && erased < 21)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield2.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 20 && erased < 41)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield3.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 40 && erased < 61)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield4.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 60 && erased < 81)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield5.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 80 && erased < 111)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield6.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 110 && erased < 141)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield7.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 if(erased > 140)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield8.jpg", GFX_PATH);
 
                     playerEngine1->changeBGR(path);
-
                 }
 
                 erased = playerEngine2->getLinesErased();
 
                 if(erased > 10 && erased < 21)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield2.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 20 && erased < 41)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield3.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 40 && erased < 61)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield4.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 60 && erased < 81)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield5.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 80 && erased < 111)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield6.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 110 && erased < 141)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield7.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(erased > 140)
                 {
-
                     char path[255];
 
                     sprintf(path, "%sgamefield8.jpg", GFX_PATH);
 
                     playerEngine2->changeBGR(path);
-
                 }
 
                 if(playerEngine1->getLinesErased() == playerEngine2->getLinesErased())
                 {
-
                     playerEngine1->setLevel(0);
                     playerEngine2->setLevel(0);
-
                 }
                 else if(playerEngine1->getLinesErased() > playerEngine2->getLinesErased())
                 {
-
                     long delta = (playerEngine1->getLinesErased() - playerEngine2->getLinesErased());
 
                     if(delta < 2)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(0);
-
                     }
 
                     if(delta >= 2)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(1);
-
                     }
 
                     if(delta >= 4)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(2);
-
                     }
 
                     if(delta >= 6)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(3);
-
                     }
 
                     if(delta >= 8)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(4);
-
                     }
 
                     if(delta >= 10)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(5);
-
                     }
 
                     if(delta >= 12)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(6);
-
                     }
 
                     if(delta >= 14)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(7);
-
                     }
-
                 }
                 else
                 {
-
                     long delta = (playerEngine2->getLinesErased() - playerEngine1->getLinesErased());
 
                     if(delta < 2)
                     {
-
                         playerEngine1->setLevel(0);
                         playerEngine2->setLevel(0);
-
                     }
 
                     if(delta >= 2)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(1);
-
                     }
 
                     if(delta >= 4)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(2);
-
                     }
 
                     if(delta >= 6)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(3);
-
                     }
 
                     if(delta >= 8)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(4);
-
                     }
 
                     if(delta >= 10)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(5);
-
                     }
 
                     if(delta >= 12)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(6);
-
                     }
 
                     if(delta >= 14)
                     {
-
                         playerEngine2->setLevel(0);
                         playerEngine1->setLevel(7);
-
                     }
-
                 }
-
             }
 
             gameLoop();
 
             if(playerEngine1->getGameOver())
             {
-
                 playerEngine2->setWinner(true);
-
             } else if(playerEngine2->getGameOver())
             {
-
                 playerEngine1->setWinner(true);
-
             }
-
         }
-
     }
 
     destroyMenu();
@@ -859,24 +720,19 @@ int main(int argc, char **argv)
 
     if(playerEngine1)
     {
-
         delete playerEngine1;
 
         playerEngine1 = 0;
-
     }
 
     if(playerEngine2)
     {
-
         delete playerEngine2;
 
         playerEngine2 = 0;
-
     }
 
     return 0;
-
 }
 
 // Function configure
@@ -886,40 +742,28 @@ int main(int argc, char **argv)
 
 void configure()
 {
-
     ConfigParser p;
 
     if(!p.loadFile(CONFIG_FILE))
     {
-
         writeLog("No configuration file present.\n");
 
         return;
-
     }
 
     if(p.readLong("sound", 0) == 1)
     {
-
         g_soundEnabled = true;
-
     } else {
-
         g_soundEnabled = false;
-
     }
 
     if(p.readLong("music", 0) == 1)
     {
-
         g_musicEnabled = true;
-
     } else {
-
         g_musicEnabled = false;
-
     }
-
 }
 
 // Function cleanUp
@@ -929,37 +773,29 @@ void configure()
 
 void cleanUp()
 {
-
     if(playerEngine1)
     {
-
         delete playerEngine1;
 
         playerEngine1 = 0;
-
     }
 
     if(playerEngine2)
     {
-
         delete playerEngine2;
 
         playerEngine2 = 0;
-
     }
 
     if(g_backgroundMusic)
     {
-
         FSOUND_Sample_Free(g_backgroundMusic);
 
         g_backgroundMusic = 0;
-
     }
 
 
     SDL_Quit();
-
 }
 
 // Function gameLoop
@@ -969,60 +805,44 @@ void cleanUp()
 
 void gameLoop()
 {
-
     SDL_Event e;
 
     while(SDL_PollEvent(&e)) {
-
         if(e.type == SDL_QUIT)
         {
-
             g_inGame = false;
 
             g_quitGame = true;
 
             return;
-
         }
 
         if(e.type == SDL_KEYDOWN)
         {
-
             if(e.key.keysym.sym == SDLK_ESCAPE)
             {
-
                 g_inGame = false;
-
             }
 
             g_keys[e.key.keysym.sym] = true;
 
             if(g_keys[SDLK_p])
             {
-
                 playerEngine1->setPauseState(!playerEngine1->getPauseState());
 
                 if(g_players > 1)
                 {
-
                     playerEngine2->setPauseState(!playerEngine2->getPauseState());
-
-
                 }
 
                 g_keys[SDLK_g] = false;
-
             }
-
         }
 
         if(e.type == SDL_KEYUP)
         {
-
             g_keys[e.key.keysym.sym] = false;
-
         }
-
     };
 
     if(g_players > 0)
@@ -1032,57 +852,39 @@ void gameLoop()
 
     if(g_players > 0)
     {
-
         if(!playerEngine1->drawGame())
         {
-
             if(!drawError)
             {
-
                 writeLog("Failed to draw game.\n");
-
             }
 
             drawError = true;
-
         }
-
     }
 
     if(g_players > 1)
     {
-
         if(!playerEngine2->drawGame())
         {
-
             if(!drawError)
             {
-
                 writeLog("Failed to draw game.\n");
-
             }
 
             drawError = true;
-
         }
-
     }
 
     if(SDL_Flip(g_screen) < 0)
     {
-
         if(!drawError)
         {
-
             writeLog("Failed to flip buffers.\n");
-
         }
 
         drawError = true;
-
     }
-
-
 }
 
 // Function freeSurfaces
@@ -1093,39 +895,30 @@ void gameLoop()
 
 void freeSurfaces()
 {
-
     if(g_gameIcon)
     {
-
         SDL_FreeSurface(g_gameIcon);
 
         g_gameIcon = 0;
-
     }
 
     if(g_gameBGR)
     {
-
         SDL_FreeSurface(g_gameBGR);
 
         g_gameBGR = 0;
-
     }
 
     if(g_advBar)
     {
-
         SDL_FreeSurface(g_advBar);
 
         g_advBar = 0;
-
     }
-
 }
 
 void outputConfiguration()
 {
-
     FILE *f = fopen(CONFIG_FILE, "w");
 
     if(!f)
@@ -1136,26 +929,17 @@ void outputConfiguration()
 
     if(g_soundEnabled)
     {
-
         fprintf(f, "Sound = 1;\n\n");
-
     } else {
-
         fprintf(f, "Sound = 0;\n\n");
-
     }
 
     fprintf(f, "#Music status (1 = on, 0 = off):\n");
 
     if(g_musicEnabled)
     {
-
         fprintf(f, "Music = 1;");
-
     } else {
-
         fprintf(f, "Music = 0;");
-
     }
-
 }

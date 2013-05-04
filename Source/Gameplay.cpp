@@ -24,7 +24,6 @@
 
 TetrisEngine::TetrisEngine(long xpos, long ypos)
 {
-
     m_x = xpos;
     m_y = ypos;
 
@@ -77,7 +76,6 @@ TetrisEngine::TetrisEngine(long xpos, long ypos)
     m_removing = false;
 
     m_startTime = 0;
-
 }
 
 // Destructor TetrisEngine::~TetrisEngine()
@@ -87,7 +85,6 @@ TetrisEngine::TetrisEngine(long xpos, long ypos)
 
 TetrisEngine::~TetrisEngine()
 {
-
     delete m_bgr;
     m_bgr = 0;
 
@@ -112,7 +109,6 @@ TetrisEngine::~TetrisEngine()
     m_bindNext = false;
 
     m_startTime = 0;
-
 }
 
 // Function TetrisEngine::bindToGrid()
@@ -123,31 +119,22 @@ TetrisEngine::~TetrisEngine()
 
 void TetrisEngine::bindToGrid(Block *b)
 {
-
     long currentIndex = 0;
 
     for(long i = 0; i < 4; ++i)
     {
-
         for(long j = 0; j < 4; ++j)
         {
-
             currentIndex = (j * 4) + i;
 
             if(m_gameBlock.getY() + j > -1)
             {
-
                 if(m_gameBlock.getShape()[currentIndex] != 0)
                 {
-
                     m_grid[m_gameBlock.getX() + i][m_gameBlock.getY() + j] = m_gameBlock.getShape()[currentIndex];
-
                 }
-
             }
-
         }
-
     }
 
     m_gameBlock.clear();
@@ -157,7 +144,6 @@ void TetrisEngine::bindToGrid(Block *b)
 
     m_gameBlock.setX(2);
     m_gameBlock.setY(-4);
-
 }
 
 // Function TetrisEngine::blockCollision()
@@ -168,7 +154,6 @@ void TetrisEngine::bindToGrid(Block *b)
 
 CollisionState TetrisEngine::blockCollision(Block *b, long deltaX, long deltaY)
 {
-
     long i = 0;
     long j = 0;
 
@@ -176,56 +161,39 @@ CollisionState TetrisEngine::blockCollision(Block *b, long deltaX, long deltaY)
 
     for(i = b->getX() + deltaX; i < b->getX() + deltaX + 4; ++i)
     {
-
         for(j = b->getY() + deltaY; j < b->getY() + deltaY + 4; ++j)
         {
-
             currentIndex = (i - b->getX() - deltaX) + ((j - b->getY() - deltaY) * 4);
 
             if(b->getShape()[currentIndex] != 0)
             {
-
                 if(i < 0)
                 {
-
                     return LeftBorderCollision;
-
                 }
 
                 if(i > (GRID_COLS - 1))
                 {
-
                     return RightBorderCollision;
-
                 }
 
                 if(j > (GRID_ROWS - 1))
                 {
-
                     return DownCollision;
-
                 }
 
                 if(j > -1)
                 {
-
                     if(m_grid[i][j] != 0)
                     {
-
                         return BlockCollision;
-
                     }
-
                 }
-
             }
-
         }
-
     }
 
     return NoCollision;
-
 }
 
 // Function TetrisEngine::changeBGR()
@@ -238,20 +206,15 @@ CollisionState TetrisEngine::blockCollision(Block *b, long deltaX, long deltaY)
 
 void TetrisEngine::changeBGR(const char *newBGR)
 {
-
     if(strcmp(newBGR, m_bgr) == 0)
     {
-
         return;
-
     }
 
     if(m_gameField)
     {
-
         SDL_FreeSurface(m_gameField);
         m_gameField = 0;
-
     }
 
     if(!m_gameField)
@@ -259,18 +222,15 @@ void TetrisEngine::changeBGR(const char *newBGR)
 
     if(!m_gameField)
     {
-
         writeLog("Failed to load the game frame.\n");
 
         return;
-
     }
 
     if(m_soundEnabled)
         FSOUND_PlaySound(FSOUND_FREE, m_levelUpSound);
 
     sprintf(m_bgr, "%s", newBGR);
-
 }
 
 // Function TetrisEngine::destroyGame()
@@ -280,7 +240,6 @@ void TetrisEngine::changeBGR(const char *newBGR)
 
 void TetrisEngine::destroyGame()
 {
-
     if(m_blocks[0])
         SDL_FreeSurface(m_blocks[0]);
 
@@ -301,56 +260,43 @@ void TetrisEngine::destroyGame()
 
     if(m_scoreBoard)
     {
-
         SDL_FreeSurface(m_scoreBoard);
         m_scoreBoard = 0;
-
     }
 
     if(m_gameField)
     {
-
         SDL_FreeSurface(m_gameField);
         m_gameField = 0;
-
     }
 
     if(m_scoreFont)
     {
-
         FreeFont(m_scoreFont);
 
         m_scoreFont = 0;
-
     }
 
     if(m_levelUpSound)
     {
-
         FSOUND_Sample_Free(m_levelUpSound);
 
         m_levelUpSound = 0;
-
     }
 
     if(m_lineRemoveSound)
     {
-
         FSOUND_Sample_Free(m_lineRemoveSound);
 
         m_lineRemoveSound = 0;
-
     }
 
     if(m_gameOverSound)
     {
-
         FSOUND_Sample_Free(m_gameOverSound);
 
         m_gameOverSound = 0;
-
     }
-
 }
 
 // Function TetrisEngine::drawGame()
@@ -360,7 +306,6 @@ void TetrisEngine::destroyGame()
 
 bool TetrisEngine::drawGame()
 {
-
     m_fieldRect.x = m_x;
     m_fieldRect.y = m_y;
 
@@ -368,20 +313,15 @@ bool TetrisEngine::drawGame()
 
     if(SDL_BlitSurface(m_gameField, 0, m_screen, &m_fieldRect) < 0)
     {
-
         return false;
-
     }
 
     for(long i = 0; i < GRID_COLS; ++i)
     {
-
         for(long j = 0; j < GRID_ROWS; ++j)
         {
-
             if(m_grid[i][j] > 0)
             {
-
                 m_blockRect.x = m_x + 5 + (i * m_blocks[m_grid[i][j] - 1]->w);
                 m_blockRect.y = m_y + 6 + (j * m_blocks[m_grid[i][j] - 1]->h);
                 m_blockRect.w = m_blocks[m_grid[i][j] - 1]->w;
@@ -389,52 +329,35 @@ bool TetrisEngine::drawGame()
 
                 if(m_linesToRemoveCount > 0)
                 {
-
                     if(m_linesToRemove[j] == true)
                     {
-
                         SDL_SetAlpha(m_blocks[m_grid[i][j] - 1], SDL_SRCALPHA, 164 - (164 * m_smoothFactorFade));
-
                     } else {
-
                         SDL_SetAlpha(m_blocks[m_grid[i][j] - 1], SDL_SRCALPHA, 164);
-
                     }
-
                 } else {
-
                     SDL_SetAlpha(m_blocks[m_grid[i][j] - 1], SDL_SRCALPHA, 164);
-
                 }
 
                 if(SDL_BlitSurface(m_blocks[m_grid[i][j] - 1], 0, m_screen, &m_blockRect) < 0)
                 {
-
                     return false;
-
                 }
-
             }
-
         }
-
     }
 
     {
-
         long currentIndex = 0;
 
         for(long i = 0; i < 4; ++i)
         {
-
             for(long j = 0; j < 4; ++j)
             {
-
                 currentIndex = (j * 4) + i;
 
                 if(m_gameBlock.getY() + j == -1)
                 {
-
                     SDL_Rect srcRect;
 
                     srcRect.x = 0;
@@ -451,21 +374,15 @@ bool TetrisEngine::drawGame()
 
                     if(m_gameBlock.getShape()[currentIndex] != 0)
                     {
-
                         if(SDL_BlitSurface(m_blocks[m_gameBlock.getShape()[currentIndex] - 1], &srcRect, m_screen, &m_blockRect) < 0)
                         {
-
                             return false;
-
                         }
-
                     }
-
                 }
 
                 if(m_gameBlock.getY() + j > -1)
                 {
-
                     m_blockRect.x = m_x + 5 + ((m_gameBlock.getX() + i) * m_blocks[0]->w) + (long)(m_deltaX * m_smoothFactorX * 19);
                     m_blockRect.y = m_y + 6 + ((m_gameBlock.getY() + j) * m_blocks[0]->h) + (long)(m_deltaY * m_smoothFactorY * 19);
                     m_blockRect.w = m_blocks[0]->w;
@@ -475,22 +392,14 @@ bool TetrisEngine::drawGame()
 
                     if(m_gameBlock.getShape()[currentIndex] != 0)
                     {
-
                         if(SDL_BlitSurface(m_blocks[m_gameBlock.getShape()[currentIndex] - 1], 0, m_screen, &m_blockRect) < 0)
                         {
-
                             return false;
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
     }
 
     m_scoreRect.x = m_fieldRect.x + m_fieldRect.w + 15;
@@ -500,13 +409,10 @@ bool TetrisEngine::drawGame()
 
     if(SDL_BlitSurface(m_scoreBoard, 0, m_screen, &m_scoreRect) < 0)
     {
-
         return false;
-
     }
 
     {
-
         char text[80];
 
         sprintf(text, "Lines:  %d", m_linesErased);
@@ -515,11 +421,9 @@ bool TetrisEngine::drawGame()
 
         if(m_countScore)
         {
-
             sprintf(text, "Score:  %d", m_score);
 
             PutStringFont(m_screen, m_scoreFont, m_fieldRect.x + m_fieldRect.w + 15 + 15, m_fieldRect.y + 15 + 30, text);
-
         }
 
         sprintf(text, "Next:");
@@ -530,41 +434,31 @@ bool TetrisEngine::drawGame()
 
         if(m_winner || m_gameOver)
         {
-
             PutStringFont(m_screen, m_scoreFont, 20, m_screen->h - 40, "Press escape to abort game!");
-
         }
 
         if(m_winner)
         {
-
             sprintf(text, "You win");
 
             PutStringFont(m_screen, m_scoreFont, m_fieldRect.x + 20 + 25, m_fieldRect.y + m_fieldRect.h / 2 - 15, text);
-
         }
 
         if(m_gameOver)
         {
-
             sprintf(text, "Game Over");
 
             PutStringFont(m_screen, m_scoreFont, m_fieldRect.x + 20 + 15, m_fieldRect.y + m_fieldRect.h / 2 - 15, text);
-
         }
-
     }
 
     {
-
         long currentIndex = 0;
 
         for(long i = 0; i < 4; ++i)
         {
-
             for(long j = 0; j < 4; ++j)
             {
-
                 currentIndex = (j * 4) + i;
 
                 m_blockRect.x = m_fieldRect.x + m_fieldRect.w + 15 + 15 + 50 + (i * m_blocks[0]->w);
@@ -576,24 +470,16 @@ bool TetrisEngine::drawGame()
 
                 if(m_nextBlock.getShape()[currentIndex] != 0)
                 {
-
                     if(SDL_BlitSurface(m_blocks[m_nextBlock.getShape()[currentIndex] - 1], 0, m_screen, &m_blockRect) < 0)
                     {
-
                         return false;
-
                     }
-
                 }
-
             }
-
         }
-
     }
 
     return true;
-
 }
 
 // Function TetrisEngine::eliminateRows()
@@ -604,25 +490,19 @@ bool TetrisEngine::drawGame()
 
 void TetrisEngine::eliminateRows()
 {
-
     for(long i = 0; i < GRID_ROWS; ++i)
     {
-
         long count = 0;
 
         for(long j = 0; j < GRID_COLS; ++j)
         {
-
             if(m_grid[j][i] > 0)
             {
-
                 ++count;
-
             }
 
             if(count == GRID_COLS)
             {
-
                 m_smoothFactorY = 0;
 
                 m_removing = true;
@@ -630,29 +510,19 @@ void TetrisEngine::eliminateRows()
                 m_linesToRemove[i] = true;
 
                 ++m_linesToRemoveCount;
-
             } else {
-
                 m_linesToRemove[i] = false;
-
             }
-
         }
-
     }
 
     if(m_removing)
     {
-
         if(m_soundEnabled)
         {
-
             FSOUND_PlaySound(FSOUND_FREE, m_lineRemoveSound);
-
         }
-
     }
-
 }
 
 // Function TetrisEngine::getKeyConfig()
@@ -663,7 +533,6 @@ void TetrisEngine::eliminateRows()
 
 long TetrisEngine::getKeyConfig(InputConfig ic)
 {
-
     if(ic == RotateKey)
         return m_rotateKey;
 
@@ -677,7 +546,6 @@ long TetrisEngine::getKeyConfig(InputConfig ic)
         return m_downKey;
 
     return 0;
-
 }
 
 // Function TetrisEngine::loadGame()
@@ -687,7 +555,6 @@ long TetrisEngine::getKeyConfig(InputConfig ic)
 
 bool TetrisEngine::loadGame()
 {
-
     long i = 0;
 
     sprintf(m_bgr, "gamefield1.jpg");
@@ -697,11 +564,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_gameField)
     {
-
         writeLog("Failed to load the game frame.\n");
 
         return false;
-
     }
 
     if(!m_scoreBoard)
@@ -709,11 +574,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_scoreBoard)
     {
-
         writeLog("Failed to load the score board.\n");
 
         return false;
-
     }
 
     if(!m_blocks[0])
@@ -731,16 +594,12 @@ bool TetrisEngine::loadGame()
 
     for(i = 0; i < 6; ++i)
     {
-
         if(!m_blocks[i])
         {
-
             writeLog("Failed to load the block bitmaps.\n");
 
             return false;
-
         }
-
     }
 
     SDL_SetColorKey(m_blocks[0], SDL_SRCCOLORKEY, 0xFFFFFF);
@@ -763,14 +622,10 @@ bool TetrisEngine::loadGame()
 
     for(i = 0; i < GRID_COLS; ++i)
     {
-
         for(long j = 0; j < GRID_ROWS; ++j)
         {
-
             m_grid[i][j] = 0;
-
         }
-
     }
 
     if(!m_scoreFont)
@@ -778,11 +633,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_scoreFont)
     {
-
         writeLog("Failed to load the font.\n");
 
         return false;
-
     }
 
     if(!m_levelUpSound)
@@ -790,11 +643,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_levelUpSound)
     {
-
         writeLog("Failed to load the level up sound.\n");
 
         return false;
-
     }
 
     if(!m_lineRemoveSound)
@@ -802,11 +653,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_lineRemoveSound)
     {
-
         writeLog("Failed to load the line removal sound.\n");
 
         return false;
-
     }
 
     if(!m_gameOverSound)
@@ -814,11 +663,9 @@ bool TetrisEngine::loadGame()
 
     if(!m_gameOverSound)
     {
-
         writeLog("Failed to load the line removal sound.\n");
 
         return false;
-
     }
 
     resetGame();
@@ -826,7 +673,6 @@ bool TetrisEngine::loadGame()
     m_startTime = SDL_GetTicks();
 
     return true;
-
 }
 
 // Function TetrisEngine::resetGame()
@@ -836,15 +682,12 @@ bool TetrisEngine::loadGame()
 
 void TetrisEngine::resetGame()
 {
-
     sprintf(m_bgr, "%s", "gamefield1.jpg");
 
     if(m_gameField)
     {
-
         SDL_FreeSurface(m_gameField);
         m_gameField = 0;
-
     }
 
     if(!m_gameField)
@@ -852,11 +695,9 @@ void TetrisEngine::resetGame()
 
     if(!m_gameField)
     {
-
         writeLog("Failed to load the game frame.\n");
 
         return;
-
     }
 
     m_gameBlock.createRandomBlock();
@@ -866,14 +707,10 @@ void TetrisEngine::resetGame()
 
     for(long i = 0; i < GRID_COLS; ++i)
     {
-
         for(long j = 0; j < GRID_ROWS; ++j)
         {
-
             m_grid[i][j] = NO_BLOCK;
-
         }
-
     }
 
     m_deltaY = 1;
@@ -888,7 +725,6 @@ void TetrisEngine::resetGame()
     m_score = 0;
 
     m_startTime = SDL_GetTicks();
-
 }
 
 // Function TetrisEngine::setLevel()
@@ -901,14 +737,10 @@ void TetrisEngine::resetGame()
 
 void TetrisEngine::setLevel(long newLevel)
 {
-
     if(newLevel >= 0 && newLevel < MAX_LEVELS)
     {
-
         m_level = newLevel;
-
     }
-
 }
 
 // Function TetrisEngine::setKeyConfig()
@@ -919,7 +751,6 @@ void TetrisEngine::setLevel(long newLevel)
 
 void TetrisEngine::setKeyConfig(InputConfig ic, long newKey)
 {
-
     if(ic == RotateKey)
         m_rotateKey = newKey;
 
@@ -931,7 +762,6 @@ void TetrisEngine::setKeyConfig(InputConfig ic, long newKey)
 
     if(ic == DownKey)
         m_downKey = newKey;
-
 }
 
 // Function TetrisEngine::updateGame()
@@ -945,7 +775,6 @@ void TetrisEngine::setKeyConfig(InputConfig ic, long newKey)
 
 void TetrisEngine::updateGame()
 {
-
     CollisionState cs = NoCollision;
 
     long timeElapsed = 0;
@@ -955,58 +784,43 @@ void TetrisEngine::updateGame()
 
     if(g_keys[m_leftKey] && !g_keys[m_rotateKey] && !m_pause)
     {
-
         g_keys[m_leftKey] = false;
 
         cs = blockCollision(&m_gameBlock, -1, m_deltaY);
 
         if(cs == NoCollision)
         {
-
             if(m_deltaX == 0)
                 m_deltaX = -1;
-
         }
-
     }
 
     if(g_keys[m_rightKey] && !g_keys[m_rotateKey] && !m_pause)
     {
-
         g_keys[m_rightKey] = false;
 
         cs = blockCollision(&m_gameBlock, 1, m_deltaY);
 
         if(cs == NoCollision)
         {
-
             if(m_deltaX == 0)
                 m_deltaX = 1;
-
         }
-
     }
 
     if(g_keys[m_downKey] && !g_keys[m_rotateKey] && !m_pause && !m_gameOver && !m_winner)
     {
-
         if(m_gameBlock.getY() > -1)
         {
-
             while(blockCollision(&m_gameBlock, 0, 1) == NoCollision)
             {
-
                 m_gameBlock.setY(m_gameBlock.getY() + 1);
-
             }
-
         }
-
     }
 
     if(g_keys[m_rotateKey] && !m_pause && !m_gameOver && !m_winner)
     {
-
         g_keys[m_rotateKey] = false;
 
         m_gameBlock.rotate(false);
@@ -1015,92 +829,65 @@ void TetrisEngine::updateGame()
 
         if(cs == LeftBorderCollision)
         {
-
             CollisionState cs2 = blockCollision(&m_gameBlock, m_deltaX + 1, 0);
 
             if(cs2 == NoCollision)
             {
-
                 m_gameBlock.setX(m_gameBlock.getX() + 1);
-
-
             } else {
-
                 cs2 = blockCollision(&m_gameBlock, m_deltaX + 2, 0);
 
                 if(cs2 == NoCollision)
                 {
-
                     m_gameBlock.setX(m_gameBlock.getX() + 2);
-
                 }
-
             }
-
-
         }
 
         if(cs == RightBorderCollision)
         {
-
             CollisionState cs2 = blockCollision(&m_gameBlock, m_deltaX - 1, 0);
 
             if(cs2 == NoCollision)
             {
-
                 m_gameBlock.setX(m_gameBlock.getX() - 1);
-
-
             } else {
-
                 cs2 = blockCollision(&m_gameBlock, m_deltaX - 2, 0);
 
                 if(cs2 == NoCollision)
                 {
-
                     m_gameBlock.setX(m_gameBlock.getX() - 2);
-
                 }
-
             }
-
-
         }
 
         cs = blockCollision(&m_gameBlock, m_deltaX, 0);
 
         if(cs != NoCollision)
             m_gameBlock.rotate(true);
-
     }
 
     cs = blockCollision(&m_gameBlock, m_deltaX, 1);
 
     if(cs == NoCollision)
     {
-
         if(m_deltaY == 0)
             m_deltaY = 1;
 
         m_bindNext = false;
-
     }
 
     if(cs == BlockCollision)
     {
-
         long firstRow = 0;
         bool set = false;
 
         for(long i = 0; i < 4; ++i)
         {
-
             for(long j = 0; j < 4; ++j)
             {
-
                 if(m_gameBlock.getShape()[(i * 4) + j] > 0)
                 {
-
                     if(!set)
                         firstRow = i;
 
@@ -1108,35 +895,24 @@ void TetrisEngine::updateGame()
 
                     i = 4;
                     j = 4;
-
                 }
-
             }
-
         }
 
         if((m_gameBlock.getY() + firstRow) < 1)
         {
-
             if(!m_gameOver)
             {
-
                 if(m_gameOverSound)
                 {
-
                     if(m_soundEnabled)
                     {
-
                         FSOUND_PlaySound(FSOUND_FREE, m_gameOverSound);
-
                     }
-
                 }
-
             }
 
             m_gameOver = true;
-
         }
 
         m_smoothFactorY = 0;
@@ -1144,94 +920,67 @@ void TetrisEngine::updateGame()
 
         if(m_bindNext && m_smoothFactorY == 0)
         {
-
             bindToGrid(&m_gameBlock);
 
             m_bindNext = false;
-
         } else {
-
             m_bindNext = true;
-
         }
-
     }
 
     if(cs == DownCollision)
     {
-
         m_deltaY = 0;
 
         if(m_bindNext && m_smoothFactorY == 0)
         {
-
             bindToGrid(&m_gameBlock);
 
             m_bindNext = false;
-
         } else {
-
             m_bindNext = true;
-
         }
-
     }
 
     if(m_gameOver || m_winner)
     {
-
         timeElapsed = 0;
-
     } else {
-
         timeElapsed = SDL_GetTicks() - m_startTime;
-
     }
 
     if(m_removing && !m_pause)
     {
-
         m_smoothFactorFade += (0.0008 * timeElapsed);
 
         if(m_smoothFactorFade > 1.0)
         {
-
             m_smoothFactorY = 0;
             timeElapsed = 0;
 
             if(m_countScore)
             {
-
                 m_score += (m_linesToRemoveCount * m_linesToRemoveCount) * 62;
-
             }
 
             m_linesErased += m_linesToRemoveCount;
 
             for(long j = 0; j < GRID_ROWS; ++j)
             {
-
                 if(m_linesToRemove[j])
                 {
-
                     for(long k = j; k > 0; --k)
                     {
-
                         for(long i = 0; i < GRID_COLS; ++i)
                         {
-
                             m_grid[i][k] = m_grid[i][k - 1];
-
                         }
-
                     }
-
                 }
 
                 m_linesToRemoveCount--;
 
                 m_linesToRemove[j] = false;
-
             }
 
             m_smoothFactorFade = 0.0;
@@ -1241,9 +990,7 @@ void TetrisEngine::updateGame()
             m_removing = false;
 
             return;
-
         }
-
     }
 
     if(m_pause)
@@ -1257,26 +1004,21 @@ void TetrisEngine::updateGame()
 
     if(m_smoothFactorX >= 1)
     {
-
         m_smoothFactorX = 0;
 
         m_gameBlock.setX(m_gameBlock.getX() + m_deltaX);
 
         m_deltaX = 0;
-
     }
 
     if(m_smoothFactorY >= 1)
     {
-
         m_smoothFactorY = 0;
 
         m_gameBlock.setY(m_gameBlock.getY() + m_deltaY);
 
         m_deltaY = 0;
-
     }
 
     m_startTime = SDL_GetTicks();
-
 }

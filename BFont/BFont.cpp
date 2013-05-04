@@ -91,7 +91,6 @@ BFont_Info * LoadFont (const char *filename)
         Font = (BFont_Info *) malloc(sizeof(BFont_Info));
 
         if (Font != NULL) {
-
             surface = (SDL_Surface *) IMG_Load(filename);
             if (surface != NULL) {
                 Font->Surface = surface;
@@ -128,7 +127,6 @@ BFont_Info * LoadFontFromSurface (SDL_Surface *Surface)
         Font = (BFont_Info *) malloc(sizeof(BFont_Info));
 
         if (Font != NULL) {
-
             Font->Surface = Surface;
             for (x=0; x<256; x++) {
                 Font->Chars[x].x = 0;
@@ -145,7 +143,6 @@ BFont_Info * LoadFontFromSurface (SDL_Surface *Surface)
     }
 
     return Font;
-
 }
 
 
@@ -169,7 +166,6 @@ BFont_Info * SetFontColor(BFont_Info *Font,Uint8 r, Uint8 g, Uint8 b)
 
     newfont = (BFont_Info *) malloc(sizeof(BFont_Info));
     if (newfont != NULL) {
-
         newfont->h = Font->h;
 
         for (x=0; x<256; x++) {
@@ -181,7 +177,6 @@ BFont_Info * SetFontColor(BFont_Info *Font,Uint8 r, Uint8 g, Uint8 b)
 
         surface = SDL_ConvertSurface(Font->Surface, Font->Surface->format, Font->Surface->flags);
         if (surface != NULL) {
-
             if (SDL_MUSTLOCK(surface))       SDL_LockSurface(surface);
             if (SDL_MUSTLOCK(Font->Surface)) SDL_LockSurface(Font->Surface);
 
@@ -502,7 +497,6 @@ void CenteredPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y,  con
 //        free (temp);
 //    }
 //    va_end(args);
-
 }
 
 void RightPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
@@ -685,7 +679,6 @@ void   PutPixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 
 Uint32 GetPixel(SDL_Surface *Surface, Sint32 X, Sint32 Y)
 {
-
    Uint8  *bits;
    Uint32 Bpp;
 

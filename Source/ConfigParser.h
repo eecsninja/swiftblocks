@@ -16,7 +16,6 @@ using namespace std;
 
 class ConfigParser
 {
-
 protected:
 
     string m_buffer;
@@ -46,7 +45,6 @@ public:
     long readLong(string var, long dflt);
 
     string readString(string var, string dflt);
-
 };
 
 #endif

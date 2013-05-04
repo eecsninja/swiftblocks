@@ -45,13 +45,11 @@
 
 enum CollisionState
 {
-
     NoCollision = 0,
     RightBorderCollision = 1,
     LeftBorderCollision = 2,
     BlockCollision = 3,
     DownCollision = 4
-
 };
 
 // Enumeration InputConfig
@@ -61,12 +59,10 @@ enum CollisionState
 
 enum InputConfig
 {
-
     RotateKey = 0,
     LeftKey = 1,
     RightKey = 2,
     DownKey = 3
-
 };
 
 // Class TetrisEngine
@@ -83,7 +79,6 @@ enum InputConfig
 
 class TetrisEngine
 {
-
 public:
 
     TetrisEngine(long xpos, long ypos);
@@ -438,7 +433,6 @@ protected:
     // Handles the block coming next.
 
     Block m_nextBlock;
-
 };
 
 #endif

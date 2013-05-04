@@ -18,7 +18,6 @@ static struct FSOUND_SAMPLE {
 } dummy_sample;
 
 namespace {
-
 int FSOUND_Init(int freq, int num_channels, int flags) {
     return 0;
 }
@@ -42,7 +41,6 @@ int FSOUND_SetLoopMode(int channel, int mode) {
 int FSOUND_Sample_Free(FSOUND_SAMPLE* sample) {
     return 0;
 }
-
 }
 
 #endif  // _FMOD_H_
