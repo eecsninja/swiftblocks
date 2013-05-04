@@ -2,14 +2,22 @@
 /************************************************************/
 /*                                                          */
 /*   BFONT.h v. 1.0.4-1 - Billi Font Library by Diego Billi */
+
 /*                                                          */
+
 /*   mail: dbilli@cs.unibo.it                               */
+
 /*   home: http://www.cs.unibo.it/~dbilli (ITALIAN)         */
+
 /*                                                          */
+
 /************************************************************/
 
 #include "SDL.h"
+
 #include "SDL_image.h"
+
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,13 +34,21 @@ typedef struct {
 
 
 
+
+
+
 /* BFont v. 1.0.2 */
+
+
 
 
 /* Load and store the font in the BFont_Info structure */
 BFont_Info * LoadFont (const char *filename);
 
+
+
 /* Free memory */
+
 void FreeFont(BFont_Info *Font);
 
 /* Returns a pointer to the current font structure */
@@ -111,23 +127,40 @@ void JustifiedPrintString     (SDL_Surface *Surface, int y, const char *fmt, ...
 void JustifiedPrintStringFont (SDL_Surface *Surface, BFont_Info *Font,  int y, const char *fmt, ...);
 
 
+
+
 /* BFont v. 1.0.3 */
 
 
+
+
+
 /* Returns a new font colored with the color (r,g,b) */
+
 BFont_Info * SetFontColor(BFont_Info *Font,Uint8 r, Uint8 g, Uint8 b);
+
+
+
+
 
 
 
 /* BFont v. 1.0.4 */
 
 
+
+
+
 /* Load and store the font int the BFont_Info structure from a SDL surface */
+
 BFont_Info * LoadFontFromSurface (SDL_Surface *Surface);
+
+
 
 
 
 #ifdef __cplusplus
 }
 #endif
+
 
