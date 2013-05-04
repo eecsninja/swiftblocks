@@ -1,0 +1,8 @@
+To compile just type make, 
+to installl type make install as root
+
+it will install the binary to /usr/local/bin
+fmod to /usr/local/lib
+and gamedata to /usr/local/share/swiftblocks
+
+Happy Playing!
