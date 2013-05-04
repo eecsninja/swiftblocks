@@ -350,10 +350,10 @@ int main(int argc, char **argv)
         return 0;
 
     }
-    
+
     if(g_musicEnabled)
     {
-    
+
         FSOUND_SetLoopMode(g_musicChannel = FSOUND_PlaySound(FSOUND_FREE, g_backgroundMusic), FSOUND_LOOP_NORMAL);
 
     }
@@ -431,7 +431,7 @@ int main(int argc, char **argv)
 
         while(!g_inGame && !g_quitGame)
         {
-        
+
             menuLoop();
 
         }
@@ -444,7 +444,7 @@ int main(int argc, char **argv)
 
         if(SDL_BlitSurface(g_gameBGR, 0, g_screen, 0) < 0)
         {
-    
+
             if(!drawError)
             {
 
@@ -464,7 +464,7 @@ int main(int argc, char **argv)
             playerEngine2->setX(50);
             playerEngine2->setY(120);
 
-        } 
+        }
         else if(g_players == 2)
         {
 
@@ -489,7 +489,7 @@ int main(int argc, char **argv)
 
                 if(SDL_BlitSurface(g_advBar, 0, g_screen, &rect) < 0)
                 {
-    
+
                     if(!drawError)
                     {
 
@@ -505,7 +505,7 @@ int main(int argc, char **argv)
                 {
 
                     stepSize = (g_advBar->w - 10) / 14;
-                    
+
                     if(playerEngine2->getLevel() != 0)
                     {
 
@@ -756,11 +756,11 @@ int main(int argc, char **argv)
 
                     playerEngine2->changeBGR(path);
 
-                }                
+                }
 
                 if(playerEngine1->getLinesErased() == playerEngine2->getLinesErased())
                 {
-                
+
                     playerEngine1->setLevel(0);
                     playerEngine2->setLevel(0);
 
@@ -935,7 +935,7 @@ int main(int argc, char **argv)
 
     if(playerEngine1)
     {
-        
+
         delete playerEngine1;
 
         playerEngine1 = 0;
@@ -944,7 +944,7 @@ int main(int argc, char **argv)
 
     if(playerEngine2)
     {
-        
+
         delete playerEngine2;
 
         playerEngine2 = 0;
@@ -1016,7 +1016,7 @@ void cleanUp()
 
     if(playerEngine1)
     {
-        
+
         delete playerEngine1;
 
         playerEngine1 = 0;
@@ -1025,7 +1025,7 @@ void cleanUp()
 
     if(playerEngine2)
     {
-        
+
         delete playerEngine2;
 
         playerEngine2 = 0;
@@ -1034,14 +1034,14 @@ void cleanUp()
 
     if(g_backgroundMusic)
     {
-        
+
         FSOUND_Sample_Free(g_backgroundMusic);
-        
+
         g_backgroundMusic = 0;
 
     }
 
-    
+
     SDL_Quit();
 
 }
@@ -1050,7 +1050,7 @@ void cleanUp()
  *
  *    Function gameLoop
  *
- *    Handles event handling during gameplay, 
+ *    Handles event handling during gameplay,
  *    updates the game status, and flips the screen.
  *
  */
@@ -1059,14 +1059,14 @@ void gameLoop()
 {
 
     SDL_Event e;
-    
+
     while(SDL_PollEvent(&e)) {
-    
+
         if(e.type == SDL_QUIT)
         {
 
             g_inGame = false;
-            
+
             g_quitGame = true;
 
             return;
@@ -1094,7 +1094,7 @@ void gameLoop()
                 {
 
                     playerEngine2->setPauseState(!playerEngine2->getPauseState());
-                    
+
 
                 }
 
@@ -1110,7 +1110,7 @@ void gameLoop()
             g_keys[e.key.keysym.sym] = false;
 
         }
-        
+
     };
 
     if(g_players > 0)
@@ -1158,7 +1158,7 @@ void gameLoop()
 
     if(SDL_Flip(g_screen) < 0)
     {
-        
+
         if(!drawError)
         {
 
@@ -1225,7 +1225,7 @@ void outputConfiguration()
 
     fprintf(f, "#Config file for Swift blocks.\n\n");
     fprintf(f, "#Sound status (1 = on, 0 = off):\n");
-    
+
     if(g_soundEnabled)
     {
 
@@ -1238,7 +1238,7 @@ void outputConfiguration()
     }
 
     fprintf(f, "#Music status (1 = on, 0 = off):\n");
-    
+
     if(g_musicEnabled)
     {
 

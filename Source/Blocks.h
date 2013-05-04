@@ -105,7 +105,7 @@ public:
     void createRandomBlock();
 
     long *getShape() { return m_shape[m_direction]; }
-    
+
     long getDirection() { return m_direction; }
 
     long getMaxDirections() { return m_maxDirections; }
@@ -136,9 +136,9 @@ private:
      *    has(m_maxDirections).
      *
      */
-    
+
     long m_direction;
-    
+
     /**
      *
      *    Member varible m_maxDirections
@@ -169,7 +169,7 @@ private:
      *    is a whole square in the grid.
      *
      */
-    
+
     long m_y;
 
 };

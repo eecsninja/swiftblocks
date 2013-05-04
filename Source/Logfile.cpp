@@ -41,9 +41,9 @@ void LogFile::clearLog()
         return;
 
     }
-        
+
     hFile =    fopen(currentLogFile, "w+");
-    
+
     fwrite("", 0, 0, hFile);
 
     fclose(hFile);

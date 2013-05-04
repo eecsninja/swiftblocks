@@ -66,7 +66,7 @@ void Block::createRandomBlock()
 
     if(seed == 0)
     {
-        
+
         seed = time(0);
 
         srand(seed);
@@ -92,12 +92,12 @@ void Block::createRandomBlock()
     {
 
     /*
-    
+
         0X00    0000
         0X00    0000
         0X00    XXXX
         0X00    0000
-        
+
     */
 
     case 0:
@@ -119,18 +119,18 @@ void Block::createRandomBlock()
             m_shape[1][11] = color;
 
             m_maxDirections = 2;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000
         0XX0
         0XX0
         0000
-        
+
     */
 
     case 1:
@@ -149,18 +149,18 @@ void Block::createRandomBlock()
             m_shape[0][10] = color;
 
             m_maxDirections = 1;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000    0000
         0XX0    00X0
         00XX    0XX0
         0000    0X00
-        
+
     */
 
     case 2:
@@ -184,18 +184,18 @@ void Block::createRandomBlock()
             m_shape[1][13] = color;
 
             m_maxDirections = 2;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000    0000    0000    0000
         0X00    0XXX    00XX    0000
         0X00    0X00    000X    000X
         0XX0    0000    000X    0XXX
-        
+
     */
 
     case 3:
@@ -229,18 +229,18 @@ void Block::createRandomBlock()
             m_shape[3][15] = color;
 
             m_maxDirections = 4;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000    0000    0000    0000
         00X0    0000    0XX0    0XXX
         00X0    0X00    0X00    000X
         0XX0    0XXX    0X00    0000
-        
+
     */
 
     case 4:
@@ -274,18 +274,18 @@ void Block::createRandomBlock()
             m_shape[3][11] = color;
 
             m_maxDirections = 4;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000    0000
         00XX    0X00
         0XX0    0XX0
         0000    00X0
-        
+
     */
 
     case 5:
@@ -309,18 +309,18 @@ void Block::createRandomBlock()
             m_shape[1][15] = color;
 
             m_maxDirections = 2;
-            
+
             break;
 
         }
 
     /*
-    
+
         0000    0000    0000    0000
         0000    0X00    0XXX    000X
         00X0    0XX0    00X0    00XX
         0XXX    0X00    0000    000X
-        
+
     */
 
     case 6:
@@ -354,7 +354,7 @@ void Block::createRandomBlock()
             m_shape[3][15] = color;
 
             m_maxDirections = 4;
-            
+
             break;
 
         }
@@ -417,7 +417,7 @@ void Block::rotate(bool reverse)
 
 Block Block::operator =(Block &Block2)
 {
-    
+
     m_shape[0][0] = Block2.m_shape[0][0];
     m_shape[0][1] = Block2.m_shape[0][1];
     m_shape[0][2] = Block2.m_shape[0][2];

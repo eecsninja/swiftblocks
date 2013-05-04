@@ -16,7 +16,7 @@
 #include "BFont.h"
 
 
-// ATTENTION: MS Visual C++ do not declarate vsnprintf in <stdio.h> 
+// ATTENTION: MS Visual C++ do not declarate vsnprintf in <stdio.h>
 #ifdef WIN32
     #define vsnprintf _vsnprintf
 #endif
@@ -438,7 +438,7 @@ void PrintString (SDL_Surface *Surface, int x, int y, const char *fmt, ...)
 void PrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int x, int y, const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -461,7 +461,7 @@ void PrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int x, int y, const
 void CenteredPrintString(SDL_Surface *Surface, int y,  const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -484,7 +484,7 @@ void CenteredPrintString(SDL_Surface *Surface, int y,  const char *fmt, ...)
 void CenteredPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y,  const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -508,7 +508,7 @@ void CenteredPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y,  con
 void RightPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -531,7 +531,7 @@ void RightPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 void RightPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y,  const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -555,7 +555,7 @@ void RightPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y,  const 
 void LeftPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -578,7 +578,7 @@ void LeftPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 void LeftPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y, const  char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -601,7 +601,7 @@ void LeftPrintStringFont(SDL_Surface *Surface, BFont_Info *Font, int y, const  c
 void JustifiedPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);
@@ -624,7 +624,7 @@ void JustifiedPrintString(SDL_Surface *Surface, int y, const char *fmt, ...)
 void JustifiedPrintStringFont(SDL_Surface *Surface, BFont_Info *Font,  int y, const char *fmt, ...)
 {
     va_list args;
-    
+
     va_start (args,fmt);
     vsnprintf(bfont_buffer,BFONT_BUFFER_LEN,fmt,args);
     va_end(args);

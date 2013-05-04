@@ -3,7 +3,7 @@
  *
  *    Gameplay.h
  *
- *    This file contains the definitions and inlined functions of the 
+ *    This file contains the definitions and inlined functions of the
  *    TetrisEngine class that handles the gameplay and some enumerations
  *    that are used in the class.
  *
@@ -64,7 +64,7 @@
  */
 
 enum CollisionState
-{ 
+{
 
     NoCollision = 0,
     RightBorderCollision = 1,
@@ -101,7 +101,7 @@ enum InputConfig
  *    To make sure that multiple instances of this class could be used
  *    at the same time, to for example, create the two-player mode, some
  *    things needs to be done outside of the class:
- *    
+ *
  *    Drawing the background.
  *    Event loop.
  *    Determine the player's speed.
@@ -113,7 +113,7 @@ class TetrisEngine
 {
 
 public:
-    
+
     TetrisEngine(long xpos, long ypos);
 
     ~TetrisEngine();
@@ -127,7 +127,7 @@ public:
     void destroyGame();
 
     bool drawGame();
-    
+
     void eliminateRows();
 
     const char *getBGR() { return m_bgr; }
@@ -155,11 +155,11 @@ public:
     bool loadGame();
 
     void resetGame();
-    
+
     void setCountScore(bool cs) { m_countScore = cs; }
 
     void setGameOver(bool go) { m_gameOver = go; }
-    
+
     void setKeyConfig(InputConfig ic, long newKey);
 
     void setLevel(long newLevel);
@@ -433,12 +433,12 @@ protected:
      *    Member variable m_deltaX
      *
      *    Keeps track of where the block is going.
-     *    -1 = Going left, 0 = Standing still, 
+     *    -1 = Going left, 0 = Standing still,
      *    1 = Going right.
      *    Will allways be either 0, 1, or -1.
      *
      */
-    
+
     long m_deltaX;
 
     /**
@@ -554,9 +554,9 @@ protected:
      *    are to be played.
      *
      */
-    
+
     bool m_soundEnabled;
-    
+
     /**
      *
      *    Member variable m_bindNext
@@ -566,7 +566,7 @@ protected:
      *    bound to the grid next update.
      *
      */
-    
+
     bool m_bindNext;
 
     /**
@@ -622,7 +622,7 @@ protected:
      */
 
     Block m_nextBlock;
-    
+
 };
 
 #endif

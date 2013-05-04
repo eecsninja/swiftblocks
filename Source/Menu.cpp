@@ -195,10 +195,10 @@ bool drawMenu()
     buttonRect.y = g_screen->h - singlePlayerButton->h - splitScreenButton->h - exitButton->h - 50;
     buttonRect.w = singlePlayerButton->w;
     buttonRect.h = singlePlayerButton->h;
-    
+
     if(SDL_BlitSurface(singlePlayerButton, 0, g_screen, &buttonRect) < 0)
     {
-        
+
         return false;
 
     }
@@ -207,10 +207,10 @@ bool drawMenu()
     buttonRect.y = g_screen->h - splitScreenButton->h - exitButton->h - 40;
     buttonRect.w = splitScreenButton->w;
     buttonRect.h = splitScreenButton->h;
-    
+
     if(SDL_BlitSurface(splitScreenButton, 0, g_screen, &buttonRect) < 0)
     {
-        
+
         return false;
 
     }
@@ -219,10 +219,10 @@ bool drawMenu()
     buttonRect.y = g_screen->h - exitButton->h - 30;
     buttonRect.w = exitButton->w;
     buttonRect.h = exitButton->h;
-    
+
     if(SDL_BlitSurface(exitButton, 0, g_screen, &buttonRect) < 0)
     {
-        
+
         return false;
 
     }
@@ -231,13 +231,13 @@ bool drawMenu()
     buttonRect.y = g_screen->h - uncheckedSound->h - 30;
     buttonRect.w = uncheckedSound->w;
     buttonRect.h = uncheckedSound->h;
-    
+
     if(g_soundEnabled)
     {
 
         if(SDL_BlitSurface(checkedSound, 0, g_screen, &buttonRect) < 0)
         {
-        
+
             return false;
 
         }
@@ -246,7 +246,7 @@ bool drawMenu()
 
         if(SDL_BlitSurface(uncheckedSound, 0, g_screen, &buttonRect) < 0)
         {
-        
+
             return false;
 
         }
@@ -257,13 +257,13 @@ bool drawMenu()
     buttonRect.y = g_screen->h - uncheckedMusic->h - uncheckedSound->h - 40;
     buttonRect.w = uncheckedSound->w;
     buttonRect.h = uncheckedSound->h;
-    
+
     if(g_musicEnabled)
     {
 
         if(SDL_BlitSurface(checkedMusic, 0, g_screen, &buttonRect) < 0)
         {
-        
+
             return false;
 
         }
@@ -272,16 +272,16 @@ bool drawMenu()
 
         if(SDL_BlitSurface(uncheckedMusic, 0, g_screen, &buttonRect) < 0)
         {
-        
+
             return false;
 
         }
 
     }
-    
+
     if(SDL_Flip(g_screen) < 0)
     {
-        
+
         return false;
 
     }
@@ -302,9 +302,9 @@ void menuLoop()
 {
 
     SDL_Event e;
-    
+
     while(SDL_PollEvent(&e)) {
-    
+
         if(e.type == SDL_QUIT)
         {
 
@@ -336,7 +336,7 @@ void menuLoop()
 
                             if(g_musicEnabled)
                             {
-                                
+
                                 FSOUND_SetLoopMode(g_musicChannel = FSOUND_PlaySound(FSOUND_FREE, g_backgroundMusic), FSOUND_LOOP_NORMAL);
 
                             } else {
@@ -346,7 +346,7 @@ void menuLoop()
                             }
 
                             outputConfiguration();
-                            
+
                         }
 
                     }
@@ -362,13 +362,13 @@ void menuLoop()
                             g_soundEnabled = !g_soundEnabled;
 
                             outputConfiguration();
-                            
+
                         }
 
                     }
-            
+
                 }
-            
+
             }
 
             if(e.button.x > (g_screen->w - exitButton->w - 30))
@@ -385,7 +385,7 @@ void menuLoop()
 
                             if(g_soundEnabled)
                                 FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-                            
+
                             g_inGame = true;
 
                             g_players = 1;
@@ -419,7 +419,7 @@ void menuLoop()
                                 FSOUND_PlaySound(FSOUND_FREE, buttonSound);
 
                             g_inGame = true;
-                            
+
                             g_players = 2;
 
                         }
@@ -431,12 +431,12 @@ void menuLoop()
             }
 
         }
-        
+
     };
 
     if(SDL_BlitSurface(g_gameBGR, 0, g_screen, 0) < 0)
     {
-    
+
         if(!drawErrorMenu)
         {
 

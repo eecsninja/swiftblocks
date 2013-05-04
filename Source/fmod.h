@@ -39,7 +39,7 @@ int FSOUND_StopSound(int channel) {
     return 0;
 }
 
-int FSOUND_SetLoopMode(int channel, int mode) {   
+int FSOUND_SetLoopMode(int channel, int mode) {
     return 0;
 }
 

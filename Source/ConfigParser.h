@@ -30,7 +30,7 @@ protected:
     string m_source;
 
     bool parseFloat(string str, float *out);
-    
+
     string parseLine();
 
     bool parseLong(string str, long *out);
@@ -40,17 +40,17 @@ protected:
 public:
 
     ConfigParser();
-    
+
     ~ConfigParser();
-    
+
     bool loadFile(string file);
 
     float readFloat(string var, float dflt);
-    
+
     long readLong(string var, long dflt);
 
     string readString(string var, string dflt);
-    
+
 };
 
 #endif

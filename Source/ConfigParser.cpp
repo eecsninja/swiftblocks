@@ -21,7 +21,7 @@ ConfigParser::ConfigParser()
     m_pos = 0;
 
     m_source = "";
-    
+
 }
 
 ConfigParser::~ConfigParser()
@@ -45,7 +45,7 @@ bool ConfigParser::loadFile(string file)
     char byte = 0;
 
     ifstream in(file.c_str(), ios::in);
-    
+
     if(!in)
     {
 
@@ -61,7 +61,7 @@ bool ConfigParser::loadFile(string file)
         m_source += in.get();
 
     }
-    
+
     if(m_source.size() < 1)
     {
 
@@ -88,10 +88,10 @@ string ConfigParser::parseLine()
 
     while(true)
     {
-    
+
         if(m_pos > m_source.size() - 1)
         {
-            
+
             break;
 
         }
@@ -120,7 +120,7 @@ string ConfigParser::parseLine()
 
             } else {
 
-                
+
 
             }
 
@@ -144,7 +144,7 @@ string ConfigParser::parseLine()
 
         if(latest[0] != ' ' && latest[0] != '\n')
         {
-            
+
             if(!comment)
             {
 
@@ -169,10 +169,10 @@ string ConfigParser::parseLine()
             }
 
         }
-        
+
         if(comment && latest[0] == '\n')
         {
-        
+
             comment = false;
 
         }
@@ -215,7 +215,7 @@ float ConfigParser::readFloat(string var, float dflt)
 
     while(!reachedEnd)
     {
-        
+
         if(m_pos > m_source.size() - 1)
         {
 
@@ -231,7 +231,7 @@ float ConfigParser::readFloat(string var, float dflt)
 
                 if(buffer[i] != '=')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -246,10 +246,10 @@ float ConfigParser::readFloat(string var, float dflt)
 
             } else if(dir == 1)
             {
-                
+
                 if(buffer[i] != '\"')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -284,7 +284,7 @@ float ConfigParser::readFloat(string var, float dflt)
                 {
 
                     delete tempchr;
-            
+
                     return out;
 
                 }
@@ -340,7 +340,7 @@ string ConfigParser::readString(string var, string dflt)
 
     while(!reachedEnd)
     {
-        
+
         if(m_pos > m_source.size() - 1)
         {
 
@@ -356,7 +356,7 @@ string ConfigParser::readString(string var, string dflt)
 
                 if(buffer[i] != '=')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -371,10 +371,10 @@ string ConfigParser::readString(string var, string dflt)
 
             } else if(dir == 1)
             {
-                
+
                 if(buffer[i] != '\"')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -404,7 +404,7 @@ string ConfigParser::readString(string var, string dflt)
             {
 
                 delete tempchr;
-            
+
                 return right;
 
             }
@@ -474,7 +474,7 @@ long ConfigParser::readLong(string var, long dflt)
 
                 if(buffer[i] != '=')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -489,10 +489,10 @@ long ConfigParser::readLong(string var, long dflt)
 
             } else if(dir == 1)
             {
-                
+
                 if(buffer[i] != '\"')
                 {
-                
+
                     tempchr[0] = buffer[i];
                     tempchr[1] = '\0';
 
@@ -527,7 +527,7 @@ long ConfigParser::readLong(string var, long dflt)
                 {
 
                     delete tempchr;
-            
+
                     return out;
 
                 }
@@ -589,7 +589,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 1;
-                    
+
                         break;
 
                     }
@@ -597,7 +597,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 2;
-                    
+
                         break;
 
                     }
@@ -605,7 +605,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 3;
-                    
+
                         break;
 
                     }
@@ -613,7 +613,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 4;
-                    
+
                         break;
 
                     }
@@ -621,7 +621,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 5;
-                    
+
                         break;
 
                     }
@@ -629,7 +629,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 6;
-                    
+
                         break;
 
                     }
@@ -637,7 +637,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 7;
-                    
+
                         break;
 
                     }
@@ -645,7 +645,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 8;
-                    
+
                         break;
 
                     }
@@ -653,7 +653,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 9;
-                    
+
                         break;
 
                     }
@@ -661,7 +661,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                     {
 
                         j = 0;
-                    
+
                         break;
 
                     }
@@ -678,7 +678,7 @@ bool ConfigParser::parseFloat(string str, float *out)
                 } else {
 
                     *f *= 10;
-                
+
                     *f += (j);
 
                 }
@@ -722,7 +722,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 1;
-                    
+
                         break;
 
                     }
@@ -730,7 +730,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 2;
-                    
+
                         break;
 
                     }
@@ -738,7 +738,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 3;
-                    
+
                         break;
 
                     }
@@ -746,7 +746,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 4;
-                    
+
                         break;
 
                     }
@@ -754,7 +754,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 5;
-                    
+
                         break;
 
                     }
@@ -762,7 +762,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 6;
-                    
+
                         break;
 
                     }
@@ -770,7 +770,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 7;
-                    
+
                         break;
 
                     }
@@ -778,7 +778,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 8;
-                    
+
                         break;
 
                     }
@@ -786,7 +786,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 9;
-                    
+
                         break;
 
                     }
@@ -794,7 +794,7 @@ bool ConfigParser::parseLong(string str, long *out)
                     {
 
                         j = 0;
-                    
+
                         break;
 
                     }
@@ -802,7 +802,7 @@ bool ConfigParser::parseLong(string str, long *out)
                 }
 
                 *l *= 10;
-                
+
                 *l += (j);
 
             }

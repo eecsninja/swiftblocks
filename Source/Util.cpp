@@ -31,9 +31,9 @@ SDL_Surface *loadImg(const char *path, const char *file)
 {
 
     char tmpPath[1024];
-    
+
     sprintf(tmpPath, path);
-    
+
     strcat(tmpPath, file);
 
     return IMG_Load(tmpPath);
@@ -54,9 +54,9 @@ BFont_Info *loadFont(const char *path, const char *file)
 {
 
     char tmpPath[1024];
-    
+
     sprintf(tmpPath, path);
-    
+
     strcat(tmpPath, file);
 
     return LoadFont(tmpPath);
@@ -77,9 +77,9 @@ FSOUND_SAMPLE *loadSound(const char *path, const char *file)
 {
 
     char tmpPath[1024];
-    
+
     sprintf(tmpPath, path);
-    
+
     strcat(tmpPath, file);
 
     return FSOUND_Sample_Load(FSOUND_FREE, tmpPath, 0, 0);
