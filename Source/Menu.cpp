@@ -48,6 +48,16 @@ bool drawErrorMenu = false;
 
 FSOUND_SAMPLE *buttonSound = 0;
 
+// List of menu options.
+enum {
+    MENU_ONE_PLAYER,
+    MENU_TWO_PLAYER,
+    MENU_EXIT,
+    NUM_MENU_CHOICES,
+};
+// Currently selected menu option.
+static int menuChoice = 0;
+
 // Function loadMenu()
 //
 // Loads the menu resources.
@@ -137,6 +147,8 @@ bool loadMenu()
 bool drawMenu()
 {
     SDL_Rect buttonRect;
+    SDL_Rect selectRect;
+    uint32_t selectColor;
 
     SDL_SetAlpha(singlePlayerButton, SDL_SRCALPHA, 198);
     SDL_SetAlpha(splitScreenButton, SDL_SRCALPHA, 198);
@@ -147,30 +159,45 @@ bool drawMenu()
     buttonRect.w = singlePlayerButton->w;
     buttonRect.h = singlePlayerButton->h;
 
+    selectRect = buttonRect;
+    selectRect.x -= 60;
+    selectRect.w = 60;
+    selectColor = (menuChoice == MENU_ONE_PLAYER) ? 0xffffffff : 0;
+
     if(SDL_BlitSurface(singlePlayerButton, 0, g_screen, &buttonRect) < 0)
-    {
         return false;
-    }
+    if(SDL_FillRect(g_screen, &selectRect, selectColor) < 0)
+        return false;
 
     buttonRect.x = g_screen->w - splitScreenButton->w - 30;
     buttonRect.y = g_screen->h - splitScreenButton->h - exitButton->h - 40;
     buttonRect.w = splitScreenButton->w;
     buttonRect.h = splitScreenButton->h;
 
+    selectRect = buttonRect;
+    selectRect.x -= 60;
+    selectRect.w = 60;
+    selectColor = (menuChoice == MENU_TWO_PLAYER) ? 0xffffffff : 0;
+
     if(SDL_BlitSurface(splitScreenButton, 0, g_screen, &buttonRect) < 0)
-    {
         return false;
-    }
+    if(SDL_FillRect(g_screen, &selectRect, selectColor) < 0)
+        return false;
 
     buttonRect.x = g_screen->w - exitButton->w - 30;
     buttonRect.y = g_screen->h - exitButton->h - 30;
     buttonRect.w = exitButton->w;
     buttonRect.h = exitButton->h;
 
+    selectRect = buttonRect;
+    selectRect.x -= 60;
+    selectRect.w = 60;
+    selectColor = (menuChoice == MENU_EXIT) ? 0xffffffff : 0;
+
     if(SDL_BlitSurface(exitButton, 0, g_screen, &buttonRect) < 0)
-    {
         return false;
-    }
+    if(SDL_FillRect(g_screen, &selectRect, selectColor) < 0)
+        return false;
 
     buttonRect.x = 20;
     buttonRect.y = g_screen->h - uncheckedSound->h - 30;
@@ -225,95 +252,62 @@ void menuLoop()
     SDL_Event e;
 
     while(SDL_PollEvent(&e)) {
-        if(e.type == SDL_QUIT)
-        {
+    switch(e.type) {
+        case SDL_QUIT:
             g_inGame = false;
-
             g_quitGame = true;
-        }
-
-        if(e.type == SDL_MOUSEBUTTONDOWN)
-        {
-            if(e.button.x > 20)
-            {
-                if(e.button.x < (20 + uncheckedSound->w))
-                {
-                    if(e.button.y > (g_screen->h - uncheckedSound->h - uncheckedMusic->h - 40))
-                    {
-                        if(e.button.y < (g_screen->h - uncheckedSound->h - 40))
-                        {
-                            if(g_soundEnabled)
-                                FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-
-                            g_musicEnabled = !g_musicEnabled;
-
-                            if(g_musicEnabled)
-                            {
-                                FSOUND_SetLoopMode(g_musicChannel = FSOUND_PlaySound(FSOUND_FREE, g_backgroundMusic), FSOUND_LOOP_NORMAL);
-                            } else {
-                                FSOUND_StopSound(g_musicChannel);
-                            }
-
-                            outputConfiguration();
-                        }
-                    }
-
-                    if(e.button.y > (g_screen->h - uncheckedSound->h - 30))
-                    {
-                        if(e.button.y < (g_screen->h - 30))
-                        {
-                            FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-
-                            g_soundEnabled = !g_soundEnabled;
-
-                            outputConfiguration();
-                        }
-                    }
+            break;
+            case SDL_KEYDOWN:
+            switch (e.key.keysym.sym) {
+            case SDLK_s:        // Press S to toggle sound.
+                g_soundEnabled = !g_soundEnabled;
+                FSOUND_PlaySound(FSOUND_FREE, buttonSound);
+                break;
+            case SDLK_m:        // Press M to toggle music.
+                g_musicEnabled = !g_musicEnabled;
+                if(g_musicEnabled)
+                    FSOUND_SetLoopMode(g_musicChannel = FSOUND_PlaySound(FSOUND_FREE, g_backgroundMusic), FSOUND_LOOP_NORMAL);
+                else
+                    FSOUND_StopSound(g_musicChannel);
+                if(g_soundEnabled)
+                    FSOUND_PlaySound(FSOUND_FREE, buttonSound);
+                break;
+            case SDLK_UP:       // Press up to go up the menu.
+                --menuChoice;
+                if (menuChoice < 0)
+                    menuChoice = NUM_MENU_CHOICES - 1;
+                break;
+            case SDLK_DOWN:     // Press down to go down the menu.
+                ++menuChoice;
+                if (menuChoice >= NUM_MENU_CHOICES)
+                    menuChoice = 0;
+                break;
+            case SDLK_ESCAPE:   // Press escape to quit.
+                g_inGame = false;
+                g_quitGame = true;
+                break;
+            case SDLK_RETURN:   // Press return to select menu option.
+                switch (menuChoice) {
+                case MENU_ONE_PLAYER:
+                    g_inGame = true;
+                    g_players = 1;
+                    break;
+                case MENU_TWO_PLAYER:
+                    g_inGame = true;
+                    g_players = 2;
+                    break;
+                case MENU_EXIT:
+                    g_quitGame = true;
+                    break;
+                default:
+                    fprintf(stderr, "Invalid menu choice: %d", menuChoice);
+                    break;
                 }
+                if(g_soundEnabled)
+                    FSOUND_PlaySound(FSOUND_FREE, buttonSound);
+                break;
             }
-
-            if(e.button.x > (g_screen->w - exitButton->w - 30))
-            {
-                if(e.button.x < (g_screen->w - 30))
-                {
-                    if(e.button.y > (g_screen->h - singlePlayerButton->h - splitScreenButton->h - exitButton->h - 50))
-                    {
-                        if(e.button.y < (g_screen->h - splitScreenButton->h - exitButton->h - 50))
-                        {
-                            if(g_soundEnabled)
-                                FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-
-                            g_inGame = true;
-
-                            g_players = 1;
-                        }
-                    }
-
-                    if(e.button.y > (g_screen->h - exitButton->h - 30))
-                    {
-                        if(e.button.y < (g_screen->h - 30))
-                        {
-                            if(g_soundEnabled)
-                                FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-
-                            g_quitGame = true;
-                        }
-                    }
-
-                    if(e.button.y > (g_screen->h - splitScreenButton->h - exitButton->h - 40))
-                    {
-                        if(e.button.y < (g_screen->h - exitButton->h - 40))
-                        {
-                            if(g_soundEnabled)
-                                FSOUND_PlaySound(FSOUND_FREE, buttonSound);
-
-                            g_inGame = true;
-
-                            g_players = 2;
-                        }
-                    }
-                }
-            }
+            break;
         }
     };
 
